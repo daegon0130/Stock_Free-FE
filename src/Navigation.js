@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navigation.css";
-import Login from "./Login";
+//import Login from "./Login";
 
 function Navigation() {
   return (
