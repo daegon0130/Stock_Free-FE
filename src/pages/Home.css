@@ -1,0 +1,15 @@
+.contents {
+  box-sizing: border-box;
+  padding-left: 240px;
+}
+
+.sales-history {
+  padding-left: 24px;
+}
+.sales-history h1 {
+  font-weight: bold;
+  color: #3d5170;
+  font-size: 32px;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}

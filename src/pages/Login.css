@@ -38,6 +38,8 @@
   height: 40px;
   border-radius: 8px;
   border: solid 1px #e1e5eb;
+  font-size: 17px;
+  padding-left: 10px;
 }
 .login-form #login-password {
   width: 283px;
@@ -45,6 +47,8 @@
   border-radius: 8px;
   border: solid 1px #e1e5eb;
   margin-bottom: 45px;
+  font-size: 17px;
+  padding-left: 10px;
 }
 .login-form label {
   margin-bottom: 8px;

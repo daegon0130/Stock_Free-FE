@@ -1,0 +1,44 @@
+.stockList {
+  width: 360px;
+  background-color: #fff;
+  color: #3d5170;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+  border-radius: 16px;
+}
+
+.stockList .listName {
+  font-size: 24px;
+  font-weight: bold;
+  height: 46px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+}
+hr {
+  border: solid 1px #e1e5eb;
+}
+
+.productName {
+  padding-left: 45px;
+  padding-top: 8px;
+  font-size: 16px;
+  color: #818ea3;
+  font-weight: 500;
+  width: 100%;
+  position: relative;
+}
+
+.productName button {
+  height: 16px;
+  width: 32px;
+  font-size: 10px;
+  font-weight: 500;
+  text-align: left;
+  color: #fbfbfb;
+  border-radius: 2px;
+  background-color: #17c671;
+  border-style: none;
+  position: absolute;
+  margin-right: 24px;
+  right: 0;
+}

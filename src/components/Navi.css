@@ -3,7 +3,12 @@
   height: 100vh;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: #ffffff;
+  left: initial;
+  top: initial;
+  position: fixed;
+  z-index: 5;
 }
+
 .navigation .header {
   font-size: 22px;
   font-weight: 600;
@@ -30,10 +35,40 @@
 }
 
 .dashboard .dash {
-  font-size: 16px;
+  font-size: 16.5px;
   font-weight: 500;
   color: #aaacb1;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 25px;
+}
+
+.dashboard .sales:hover svg {
+  fill: #555;
+}
+
+.dash a {
+  text-decoration: none;
+  color: inherit;
+  font: inherit;
+}
+
+.dash a:hover {
+  color: #007bff;
+}
+
+.dash a:hover svg path {
+  fill: #007bff;
+}
+
+.isData svg path {
+  fill: #007bff;
+}
+
+.isSales svg path {
+  fill: #007bff;
+}
+
+.isStock svg path {
+  fill: #007bff;
 }
