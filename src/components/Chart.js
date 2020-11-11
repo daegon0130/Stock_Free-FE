@@ -14,12 +14,20 @@ class Chart extends Component {
         this.props.options
       );
     }
-  
+    componentDidUpdate() {
+      if (this.props.allowChartUpdate !== false) {
+        this.chart.update(
+          this.props.options,
+          ...(this.props.updateArgs || [true, true])
+        );
+      }
+  }
     componentWillUnmount() {
       this.chart.destroy();
     }
   
     render() {
+      //this.props.onCreate(this.series.)
       return <div ref={this.chartContainer} />;
     }
   }

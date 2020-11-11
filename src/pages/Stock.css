@@ -25,7 +25,7 @@
 .stockList {
   width: 360px;
   min-width: 360px;
-  height: 421px;
+  min-height: 421px;
   background-color: #fff;
   color: #3d5170;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
@@ -49,8 +49,11 @@
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
   border-radius: 16px;
   display: inline-block;
+  max-height: 500px;
 }
-
+.real-chart{
+  margin-bottom: 15px;
+}
 .stock-chart .chart-name {
   font-size: 24px;
   font-weight: bold;
@@ -64,7 +67,23 @@ hr {
   border: solid 1px #e1e5eb;
 }
 
-.productName {
+.productShow {
+  padding-left: 45px;
+  padding-top: 8px;
+  font-size: 16px;
+  color: #3d5170;
+  font-weight: bold;
+  width: 100%;
+  position: relative;
+}
+.productShowSpace {
+  background-color: #fbfbfb;
+  padding-bottom: 8px;
+}
+.productNotShowSpace {
+  padding-bottom: 20px;
+}
+.productNotShow {
   padding-left: 45px;
   padding-top: 8px;
   font-size: 16px;
@@ -73,8 +92,21 @@ hr {
   width: 100%;
   position: relative;
 }
-
-.productName button {
+.productShow button {
+  height: 16px;
+  width: 32px;
+  font-size: 10px;
+  font-weight: 500;
+  text-align: left;
+  color: #fbfbfb;
+  border-radius: 2px;
+  background-color: #c4183c;
+  border-style: none;
+  position: absolute;
+  margin-right: 24px;
+  right: 0;
+}
+.productNotShow button {
   height: 16px;
   width: 32px;
   font-size: 10px;
@@ -87,4 +119,11 @@ hr {
   position: absolute;
   margin-right: 24px;
   right: 0;
+}
+
+.loader_text {
+  font-size: 25px;
+  font-weight: 500;
+  padding-top: 50px;
+  padding-left: 50px;
 }

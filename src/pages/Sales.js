@@ -5,8 +5,7 @@ import Navi from '../components/Navi'
 import Header from '../components/Header'
 import StockTable from '../components/StockTable'
 import Chart from '../components/Chart'
-//import StockList from '../components/StockList'
-//https://www.popit.kr/%EC%A2%8C%EC%B6%A9%EC%9A%B0%EB%8F%8C-%EC%95%97-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%95%98%EC%9D%B4%EC%B0%A8%ED%8A%B8%EB%A1%9C-%EC%B0%A8%ED%8A%B8%EB%A5%BC-%EA%B7%B8%EB%A0%B8%EB%8A%94%EB%8D%B0-%EC%B0%A8/
+
 class Sales extends React.Component {
   state = {
     isLoading: false,
@@ -15,12 +14,12 @@ class Sales extends React.Component {
     
     //예측한 상품별 판매량(10일치)
     productPredict : [{id: 0, name: '후라이드', value: [59, 64, 45, 40, 60, 61, 64, 65, 48, 50]}
-    , {id: 1,name: '양념', value: [59, 64, 45, 40, 60, 61, 64, 65, 48, 50]}
+    , {id: 1,name: '양념', value: [50, 63, 41, 44, 60, 62, 64, 67, 40, 50]}
     , {id: 2,name: '간장',value: [20,30,20,30,20,30,20,30,20,30]}
     , {id: 3,name: '후라이드 반 양념 반', value: [23,30,20,33,20,32,20,32,21,30]}
     , {id: 4,name: '땡초', value: [53,40,50,63,70,52,50,52,61,60]}
     , {id: 5,name: '소주', value: [44,44,44,34,20,32,34,32,41,30]}
-    , {id: 6,name: '맥주', value: [23,30,20,33,20,32,20,32,21,30]}
+    , {id: 6,name: '맥주', value: [23,34,27,38,10,22,29,32,28,30]}
     ],
 
     //월별, 주별, 일별 판매량 데이터
