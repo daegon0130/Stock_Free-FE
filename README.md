@@ -2,4 +2,4 @@
 
 **Yonsei AI startup Course 2020**
 
-*Click **[here](https://daegon0130.github.io/Stock_Free-FE)** to see the result*
+*Click **[here](https://master.d2on7hn5cuveib.amplifyapp.com/#/)** to see the result*
