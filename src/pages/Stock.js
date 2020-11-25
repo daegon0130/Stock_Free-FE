@@ -21,6 +21,7 @@ class Stock extends React.Component {
     ],
     isShow: [0]
   };
+  colors= ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1']
   information=[]
   notShow=[]
   options = {
@@ -83,9 +84,10 @@ class Stock extends React.Component {
       const p = JSON.parse(JSON.stringify(productPredict));
       this.information = p.filter(product => this.state.isShow.indexOf(product.id)!==-1);
       this.notShow = p.filter(product => this.state.isShow.indexOf(product.id)===-1);
-      this.options.series = this.information.map(({value, name})=>({name:name, data:value}));
-      console.log(this.information)
-      console.log(this.state.productPredict)
+      this.options.series = this.information.map(({value, name, id})=>({name:name, data:value, color:this.colors[id%10]}));
+      //console.log(this.information)
+      //console.log(this.state.productPredict)
+      console.log(this.options.series)
     return (
       <section className="container">
         <nav className="navi">
@@ -93,26 +95,27 @@ class Stock extends React.Component {
         </nav>
         <section className="contents">
           <div className="header">
-            <Header key = {0} startDate={this.state.data[0]} lastDate={this.state.data[1]} />          
+            <Header startDate={this.state.data[0]} lastDate={this.state.data[1]} />          
           </div>
           <div className="stock-ready">
             <h1>재고 사전 준비</h1>
             <div className="first-row">
               <div className="stock-chart">
                 <div className="chart-name">재고 준비량</div><hr/>
-                <div className="real-chart"><Chart key={0} options={this.options} /></div>
+                <div className="real-chart"><Chart options={this.options} /></div>
               </div>
               <div className="stockList">
-                 <div className="listName">판매 제품</div><hr/>
-              <div className="productShowSpace">
-                {this.information.map(v => {return <div className="productShow">{v.name}<button onClick={() => this.handleRemoveChange(v.id)}>제거</button></div>})}
-              </div><hr/>
-              <div className="productNotShowSpace">
-                {this.notShow.map(product =>{return(<div className='productNotShow'>{product.name}<button onClick={() => this.handleAddChange(product.id)}>추가</button></div>)})}</div>
+                <div className="listName">판매 제품</div><hr/>
+                <div className="productShowSpace">
+                  {this.information.map(v => {return <div className="productShow">{v.name}<button onClick={() => this.handleRemoveChange(v.id)}>제거</button></div>})}
+                </div><hr/>
+                <div className="productNotShowSpace">
+                  {this.notShow.map(product =>{return(<div className='productNotShow'>{product.name}<button onClick={() => this.handleAddChange(product.id)}>추가</button></div>)})}
+                </div>
               </div>
             </div>
             <div className="stock-table">
-              <StockTableList key={0} datePredict={this.state.datePredict} productPredict={this.information} />
+                <StockTableList datePredict={this.state.datePredict} productPredict={this.information} />
             </div>
           </div>
         </section>

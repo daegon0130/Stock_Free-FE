@@ -13,3 +13,259 @@
   margin-top: 14px;
   margin-bottom: 14px;
 }
+
+.sales-history .product-select{
+  width: 200px;
+  height: 160px;
+  padding-top: 24px;
+  padding-left: 20px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+  margin-bottom: 15px;
+}
+
+.sales-history .product-select h5{
+  font-size: 12px;
+  font-weight: 600;
+  color: #818ea3;
+  margin: 0;
+}
+.sales-history .first-row{
+  position: relative;
+  z-index: 10;
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.sales-history .second-row {
+  display: flex;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 0;
+}
+
+.sales-chart {
+  width: 810px;
+  background-color: #fff;
+  color: #3d5170;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+  border-radius: 16px;
+  display: inline-block;
+  max-height: 500px;
+}
+.sales-chart .real-chart{
+  margin-bottom: 15px;
+}
+.sales-chart .chart-name {
+  font-size: 24px;
+  font-weight: bold;
+  height: 46px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  margin-bottom: 8px;
+}
+
+hr {
+  border: solid 1px #e1e5eb;
+}
+.sales-chart hr{
+  border: solid 1px #e1e5eb;
+  margin: 0;
+}
+
+.salesList {
+  width: 360px;
+  min-width: 360px;
+  min-height: 421px;
+  background-color: #fff;
+  color: #3d5170;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+  border-radius: 16px;
+  margin-left: 16px;
+}
+
+.salesList .listName {
+  font-size: 24px;
+  font-weight: bold;
+  height: 46px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+}
+.productShow {
+  padding-left: 45px;
+  padding-top: 8px;
+  font-size: 16px;
+  color: #3d5170;
+  font-weight: bold;
+  width: 100%;
+  
+}
+.productShowSpace {
+  background-color: #fbfbfb;
+  padding-bottom: 8px;
+}
+.selectSpace {
+  background-color: #fbfbfb;
+  padding-bottom: 8px;
+  padding-left: 45px;
+  padding-top: 8px;
+  font-size: 16px;
+  color: #3d5170;
+  font-weight: bold;
+  width: 100%;
+  height: 50px;
+}
+.productNotShowSpace {
+  padding-bottom: 20px;
+}
+.productNotShow {
+  padding-left: 45px;
+  padding-top: 8px;
+  font-size: 16px;
+  color: #818ea3;
+  font-weight: 500;
+  width: 100%;
+  
+}
+.coreProduct{
+  width: 180px;
+  overflow: auto;
+}
+.coreProduct::-webkit-scrollbar {
+  width: 3px;
+  height: 4px;
+}
+
+.coreProduct::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: #818ea3;
+}
+.coreProduct::-webkit-scrollbar-track {
+    box-shadow: inset 0px 0px 5px white;
+    border-radius: 3px;
+    background-color: #e1e5eb;
+}
+.productShow button {
+  height: 16px;
+  width: 32px;
+  font-size: 10px;
+  font-weight: 500;
+  text-align: left;
+  color: #fbfbfb;
+  border-radius: 2px;
+  background-color: #c4183c;
+  border-style: none;
+  
+  margin-right: 24px;
+  right: 0;
+}
+.productNotShow button {
+  height: 16px;
+  width: 32px;
+  font-size: 10px;
+  font-weight: 500;
+  text-align: left;
+  color: #fbfbfb;
+  border-radius: 2px;
+  background-color: #17c671;
+  border-style: none;
+  
+  margin-right: 24px;
+  right: 0;
+}
+
+.loader_text {
+  font-size: 25px;
+  font-weight: 500;
+  padding-top: 50px;
+  padding-left: 50px;
+}
+
+.menu{
+  width: 160px;
+  padding: 10px 40px 8px 41px;
+  border: solid 1px #e1e5eb;
+  background-color: #ffffff;
+  text-align: center;
+  color: #818ea3;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 16px;
+}
+.menu img{
+  height: 12px;
+}
+.coreProduct{
+  margin-top: 10px;
+  margin-bottom: 25px;
+  color: #3d5170;
+  font-size: 20px;
+  font-weight: bold;
+}
+.button-menu{
+  font-size: 10px;
+  font-weight: 600;
+  color: #818ea3;
+  padding: 11px 6px 4px 10px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+  z-index: 100;
+  max-height: 160px;
+  overflow: auto;
+  width: 160px;
+}
+
+.button-menu::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.button-menu::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: #818ea3;
+}
+.button-menu::-webkit-scrollbar-track {
+    box-shadow: inset 0px 0px 5px white;
+    border-radius: 3px;
+    background-color: #e1e5eb;
+}
+
+.button-menu button{
+  display: block;
+  color: #818ea3;
+  font-weight: 600;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background-color: #fff;
+}
+
+.dayChart, .weekChart, .monthChart{
+  width: 310px;
+  height: 160px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+  margin-bottom: 15px;
+  margin-left: 16px;
+  padding-top: 24px;
+}
+
+.sales-history .dayChart h5, .weekChart h5, .monthChart h5{
+  font-size: 12px;
+  font-weight: 600;
+  color: #818ea3;
+  margin: 0;
+  padding-left: 20px;
+  overflow: hidden;
+}
+
+.chartSales{
+  padding-left: 20px;
+  color: #3d5170;
+  font-size: 28px;
+  font-weight: bold;
+}

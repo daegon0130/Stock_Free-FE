@@ -17,7 +17,7 @@
   font-weight: 300;
 }
 
-.first-row {
+.stock-ready .first-row {
   display: flex;
   margin-bottom: 24px;
 }
