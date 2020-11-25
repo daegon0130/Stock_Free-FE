@@ -1,5 +1,5 @@
 import React from "react";
-//import axios from "axios";
+import axios from "axios";
 import "./Stock.css";
 import Navi from '../components/Navi'
 import Header from '../components/Header'
@@ -21,6 +21,13 @@ class Stock extends React.Component {
     ],
     isShow: [0]
   };
+  getPredict = async () =>{
+    const getget = await axios.get('https://fblp980i44.execute-api.ap-northeast-2.amazonaws.com/test');
+    console.log(getget);
+  }
+  componentDidMount(){
+    this.getPredict();
+  }
   colors= ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1']
   information=[]
   notShow=[]
@@ -87,7 +94,7 @@ class Stock extends React.Component {
       this.options.series = this.information.map(({value, name, id})=>({name:name, data:value, color:this.colors[id%10]}));
       //console.log(this.information)
       //console.log(this.state.productPredict)
-      console.log(this.options.series)
+      //console.log(this.options.series)
     return (
       <section className="container">
         <nav className="navi">

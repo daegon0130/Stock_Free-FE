@@ -162,6 +162,7 @@ class Home extends React.Component {
   numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+  average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
   render() {
     const { isLoading, productPredict } = this.state;
 
@@ -175,6 +176,7 @@ class Home extends React.Component {
       this.smallOptions.series= coreSales.map(({value, name, id})=>({name:name, data:value}));
       const daySales = JSON.parse(JSON.stringify(this.smallOptions));
       daySales.series[0].color = '#000';
+      const daySum =this.average(daySales.series[0].data);
       //console.log(this.information)
       //console.log(this.state.productPredict)
       console.log(this.options.series)
@@ -208,7 +210,7 @@ class Home extends React.Component {
               </div>
               <div className="dayChart">
                 <h5>일별 판매량</h5>
-                <div className="chartSales">{this.numberWithCommas(4211)}</div>
+                <div className="chartSales">{this.numberWithCommas(daySum)}</div>
                 <div className="small-chart"><Chart options={daySales} /></div>
               </div>
               <div className="weekChart">
