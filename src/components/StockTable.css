@@ -1,5 +1,5 @@
 .stockTable {
-  width: 870px;
+  width: 1185px;
   background-color: #fff;
   color: #3d5170;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
@@ -17,11 +17,12 @@
 }
 
 .stockTable .table {
-  padding-left: 16px;
+  display: inline-table;
+  padding-left: 5px;
   overflow: auto;
 }
 .table td {
-  padding-left: 24px;
+  padding-left: 30px;
   padding-top: 8px;
   padding-bottom: 8px;
 }
@@ -32,17 +33,21 @@
 
 .table thead {
   color: #3d5170;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 600;
   text-align: right;
 }
 .table tbody {
   color: #818ea3;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 600;
   text-align: right;
 }
-
+.table .c1{
+  padding-left: 0;
+  font-size: 15px;
+  font-weight: bold;
+}
 .percent {
   font-weight: bold;
   text-align: center;
@@ -51,13 +56,14 @@ hr {
   border: solid 1px #e1e5eb;
 }
 
-.stick2 {
+.stick3 {
   vertical-align: middle;
   display: inline-block;
   width: 3px;
-  height: 65.5px;
-  background-color: #007bff;
+  height: 86px;
   border-radius: 10px;
+  margin-left: 30px;
+  margin-top: 28px;
 }
 
 .stick1 {
@@ -66,4 +72,9 @@ hr {
   height: 4px;
   border-radius: 10px;
   display: inline-block;
+}
+
+.roww{
+  display: flex;
+  align-items: center;
 }

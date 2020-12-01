@@ -12,7 +12,7 @@ class StockTableList extends React.Component {
         const list = productPredict.map(
         (info) => (<StockTable key={info.id} datePredict={datePredict} productPredict = {info}/>)
         );
-        console.log({list})
+       // console.log({list})
         return (
             <div>
                 {list}
