@@ -16,18 +16,7 @@ class Home extends React.Component {
     day: [],
     week: [],
     month: [],
-    datePredict: [
-      "8월 12일",
-      "8월 13일",
-      "8월 14일",
-      "8월 15일",
-      "8월 16일",
-      "8월 17일",
-      "8월 18일",
-      "8월 19일",
-      "8월 20일",
-      "8월 21일",
-    ],
+
     //월별, 주별, 일별 판매량 데이터
     monthHistory: [],
     weekHistory: [],
@@ -49,7 +38,7 @@ class Home extends React.Component {
       password: "11dnjf11dlf",
       db: "userID",
       charset: "utf8",
-      start: "2020-08-11",
+      start: "2020-08-10",
       end: "2020-09-20",
     },
   };
@@ -514,6 +503,10 @@ class Home extends React.Component {
         weekOptions.xAxis.categories = [this.state.week[0], this.state.week[0]];
         weekOptions.xAxis.max = this.state.week.length - 0.5;
       }
+      if (this.state.week.length < 3) {
+        weekOptions.yAxis.max =
+          Math.max.apply(null, weekCoreSales[0].value) + 1;
+      }
       const weekSum = this.average(weekOptions.series[0].data).toFixed(1);
       // small month chart 옵션 바꾸기.
       const monthOptions = JSON.parse(JSON.stringify(this.smallOptions));
@@ -539,6 +532,10 @@ class Home extends React.Component {
         ];
         monthOptions.xAxis.max = this.state.month.length - 0.5;
       }
+      if (this.state.month.length < 3) {
+        monthOptions.yAxis.max =
+          Math.max.apply(null, monthCoreSales[0].value) + 5;
+      }
       const monthSum = this.average(monthOptions.series[0].data).toFixed(1);
       // small day chart 옵션 바꾸기.
       const dayOptions = JSON.parse(JSON.stringify(this.smallOptions));
@@ -561,8 +558,13 @@ class Home extends React.Component {
         dayOptions.xAxis.categories = [this.state.day[0], this.state.day[0]];
         dayOptions.xAxis.max = this.state.day.length - 0.5;
       }
+      if (this.state.day.length < 3) {
+        dayOptions.yAxis.max = Math.max.apply(null, dayCoreSales[0].value) + 5;
+      }
       const daySum = this.average(dayOptions.series[0].data).toFixed(1);
-
+      if (Math.max.apply(null, dayCoreSales[0].value) === 0) {
+        dayOptions.yAxis.max = 0;
+      }
       // 핵심 제품.
       const coreProduct = p[this.state.core].name;
       /// 리스트 높이.
@@ -642,8 +644,15 @@ class Home extends React.Component {
                       <button
                         style={
                           this.state.time === 1
-                            ? { backgroundColor: "#007bff" }
-                            : { backgroundColor: "#fff" }
+                            ? {
+                                backgroundColor: "#007bff",
+                                color: "#fff",
+                                borderRadius: "8px 0 0 8px",
+                              }
+                            : {
+                                backgroundColor: "#fff",
+                                borderRadius: "8px 0 0 8px",
+                              }
                         }
                         onClick={() => this.changeTime(1)}
                       >
@@ -652,7 +661,7 @@ class Home extends React.Component {
                       <button
                         style={
                           this.state.time === 2
-                            ? { backgroundColor: "#007bff" }
+                            ? { backgroundColor: "#007bff", color: "#fff" }
                             : { backgroundColor: "#fff" }
                         }
                         onClick={() => this.changeTime(2)}
@@ -662,8 +671,15 @@ class Home extends React.Component {
                       <button
                         style={
                           this.state.time === 3
-                            ? { backgroundColor: "#007bff" }
-                            : { backgroundColor: "#fff" }
+                            ? {
+                                backgroundColor: "#007bff",
+                                color: "#fff",
+                                borderRadius: "0 8px 8px 0",
+                              }
+                            : {
+                                backgroundColor: "#fff",
+                                borderRadius: "0 8px 8px 0",
+                              }
                         }
                         onClick={() => this.changeTime(3)}
                       >
@@ -687,7 +703,6 @@ class Home extends React.Component {
                         max={this.state.oriDate[1]}
                         onChange={event => this.handleEndDate(event)}
                       />
-                      <input type="submit" value="설정하기" />
                     </form>
                   </div>
                   <hr />

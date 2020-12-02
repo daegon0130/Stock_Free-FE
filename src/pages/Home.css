@@ -112,7 +112,8 @@ hr {
 .selectSpace {
   background-color: #fbfbfb;
   padding-bottom: 8px;
-  padding-left: 45px;
+  padding-left: 20px;
+  padding-right: 20px;
   padding-top: 8px;
   font-size: 16px;
   color: #3d5170;
@@ -302,4 +303,33 @@ hr {
   color: #3d5170;
   font-size: 28px;
   font-weight: bold;
+}
+
+.selectTerm button{
+  color: #818ea3;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 9px 20px 9px 22px;
+  border: solid 1px #e1e5eb;
+  background-color: #ffffff;
+  display: inline-block;
+}
+
+.selectSpace .selectTerm{
+  display: inline-block;
+}
+
+.selectSpace form{
+  display: inline-block;
+  float: right;
+}
+
+.selectSpace input{
+  color: #818ea3;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 9px 20px 9px 22px;
+  border: solid 1px #e1e5eb;
+  background-color: #ffffff;
+  margin-left: 10px;
 }
