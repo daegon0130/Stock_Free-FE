@@ -495,6 +495,7 @@ class Home extends React.Component {
       weekOptions.series[0].color = "#ffb400";
       weekOptions.xAxis.categories = this.state.week;
       weekOptions.xAxis.max = this.state.week.length - 1.5;
+      weekOptions.yAxis.max = null;
       if (this.state.week.length === 1) {
         weekOptions.series[0].data = [
           weekOptions.series[0].data[0],
@@ -503,9 +504,19 @@ class Home extends React.Component {
         weekOptions.xAxis.categories = [this.state.week[0], this.state.week[0]];
         weekOptions.xAxis.max = this.state.week.length - 0.5;
       }
-      if (this.state.week.length < 3) {
-        weekOptions.yAxis.max =
-          Math.max.apply(null, weekCoreSales[0].value) + 1;
+      if (this.state.week.length < 5) {
+        if (Math.max.apply(null, weekCoreSales[0].value) < 3) {
+          weekOptions.yAxis.max =
+            Math.max.apply(null, weekCoreSales[0].value) + 1;
+        } else {
+          weekOptions.yAxis.max =
+            Math.max.apply(null, weekCoreSales[0].value) + 5;
+        }
+      } else {
+        if (Math.max.apply(null, weekCoreSales[0].value) === 0) {
+          weekOptions.yAxis.max =
+            Math.max.apply(null, weekCoreSales[0].value) + 1;
+        }
       }
       const weekSum = this.average(weekOptions.series[0].data).toFixed(1);
       // small month chart 옵션 바꾸기.
@@ -521,6 +532,7 @@ class Home extends React.Component {
       monthOptions.series[0].color = "#1adba2";
       monthOptions.xAxis.categories = this.state.month;
       monthOptions.xAxis.max = this.state.month.length - 1.5;
+      monthOptions.yAxis.max = null;
       if (this.state.month.length === 1) {
         monthOptions.series[0].data = [
           monthOptions.series[0].data[0],
@@ -532,9 +544,19 @@ class Home extends React.Component {
         ];
         monthOptions.xAxis.max = this.state.month.length - 0.5;
       }
-      if (this.state.month.length < 3) {
-        monthOptions.yAxis.max =
-          Math.max.apply(null, monthCoreSales[0].value) + 5;
+      if (this.state.month.length < 5) {
+        if (Math.max.apply(null, monthCoreSales[0].value) < 3) {
+          monthOptions.yAxis.max =
+            Math.max.apply(null, monthCoreSales[0].value) + 1;
+        } else {
+          monthOptions.yAxis.max =
+            Math.max.apply(null, monthCoreSales[0].value) + 5;
+        }
+      } else {
+        if (Math.max.apply(null, monthCoreSales[0].value) === 0) {
+          monthOptions.yAxis.max =
+            Math.max.apply(null, monthCoreSales[0].value) + 1;
+        }
       }
       const monthSum = this.average(monthOptions.series[0].data).toFixed(1);
       // small day chart 옵션 바꾸기.
@@ -550,6 +572,7 @@ class Home extends React.Component {
       dayOptions.series[0].color = "#007bff";
       dayOptions.xAxis.categories = this.state.day;
       dayOptions.xAxis.max = this.state.day.length - 1.5;
+      dayOptions.yAxis.max = null;
       if (this.state.day.length === 1) {
         dayOptions.series[0].data = [
           dayOptions.series[0].data[0],
@@ -558,13 +581,24 @@ class Home extends React.Component {
         dayOptions.xAxis.categories = [this.state.day[0], this.state.day[0]];
         dayOptions.xAxis.max = this.state.day.length - 0.5;
       }
-      if (this.state.day.length < 3) {
-        dayOptions.yAxis.max = Math.max.apply(null, dayCoreSales[0].value) + 5;
+      if (this.state.day.length < 5) {
+        if (Math.max.apply(null, dayCoreSales[0].value) < 3) {
+          dayOptions.yAxis.max =
+            Math.max.apply(null, dayCoreSales[0].value) + 1;
+        } else {
+          dayOptions.yAxis.max =
+            Math.max.apply(null, dayCoreSales[0].value) + 5;
+        }
+      } else {
+        if (Math.max.apply(null, dayCoreSales[0].value) === 0) {
+          dayOptions.yAxis.max =
+            Math.max.apply(null, dayCoreSales[0].value) + 1;
+        }
       }
       const daySum = this.average(dayOptions.series[0].data).toFixed(1);
-      if (Math.max.apply(null, dayCoreSales[0].value) === 0) {
-        dayOptions.yAxis.max = 0;
-      }
+      //if (Math.max.apply(null, dayCoreSales[0].value) === 0) {
+      //  dayOptions.yAxis.max = 0;
+      //}
       // 핵심 제품.
       const coreProduct = p[this.state.core].name;
       /// 리스트 높이.
