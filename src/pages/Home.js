@@ -332,7 +332,7 @@ class Home extends React.Component {
     },
     chart: {
       type: "areaspline",
-      width: 310,
+      width: 292,
       height: 84,
       margin: 0,
       animation: false,
@@ -368,8 +368,8 @@ class Home extends React.Component {
     },
     chart: {
       type: "line",
-      width: 810,
-      height: "421",
+      width: 780,
+      height: 370,
       animation: false,
     },
     series: [
@@ -602,7 +602,7 @@ class Home extends React.Component {
       // 핵심 제품.
       const coreProduct = p[this.state.core].name;
       /// 리스트 높이.
-      let itemHeight = 440 - 29.6 * this.state.isShow.length;
+      let itemHeight = 365 - 29.6 * this.state.isShow.length;
       return (
         <section className="container">
           <nav className="navi">

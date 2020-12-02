@@ -35,7 +35,7 @@
   position: relative;
   z-index: 10;
   display: flex;
-  margin-bottom: 24px;
+  margin-bottom: 0;
 }
 
 .sales-history .second-row {
@@ -46,13 +46,14 @@
 }
 
 .sales-chart {
-  width: 810px;
+  width: 780px;
   background-color: #fff;
   color: #3d5170;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
   border-radius: 16px;
   display: inline-block;
-  max-height: 500px;
+  max-height: 465px;
+  overflow: hidden;
 }
 .sales-chart .real-chart{
   margin-bottom: 15px;
@@ -76,9 +77,10 @@ hr {
 }
 
 .salesList {
-  width: 360px;
-  min-width: 360px;
+  width: 330px;
+  min-width: 330px;
   min-height: 421px;
+  max-height: 465px;
   background-color: #fff;
   color: #3d5170;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
@@ -279,7 +281,7 @@ hr {
 }
 
 .dayChart, .weekChart, .monthChart{
-  width: 310px;
+  width: 292px;
   height: 160px;
   background-color: #ffffff;
   border-radius: 16px;
