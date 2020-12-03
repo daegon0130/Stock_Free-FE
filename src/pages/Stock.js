@@ -11,37 +11,14 @@ class Stock extends React.Component {
   state = {
     isLoading: true,
     date: [],
-    datePredict: [
-      "8월 12일",
-      "8월 13일",
-      "8월 14일",
-      "8월 15일",
-      "8월 16일",
-      "8월 17일",
-      "8월 18일",
-      "8월 19일",
-      "8월 20일",
-      "8월 21일",
-    ],
-    productPredict: [
-      { id: 0, name: "후라이드", value: [59, 64, 45, 40, 60, 61, 64, 65, 48, 50] },
-      { id: 1, name: "양념", value: [50, 63, 41, 44, 60, 62, 64, 67, 40, 50] },
-      { id: 2, name: "간장", value: [20, 30, 20, 30, 20, 30, 20, 30, 20, 30] },
-      {
-        id: 3,
-        name: "후라이드 반 양념 반",
-        value: [23, 30, 20, 33, 20, 32, 20, 32, 21, 30],
-      },
-      { id: 4, name: "땡초", value: [53, 40, 50, 63, 70, 52, 50, 52, 61, 60] },
-      { id: 5, name: "소주", value: [44, 44, 44, 34, 20, 32, 34, 32, 41, 30] },
-      { id: 6, name: "맥주", value: [23, 34, 27, 38, 10, 22, 29, 32, 28, 30] },
-    ],
-    isShow: [0],
+    datePredict: [],
+    productPredict: [],
+    isShow: [1],
     predictData: {
       host: "stockfree1.ckta3csfmjh6.ap-northeast-2.rds.amazonaws.com",
       user: "sfadmin",
       password: "11dnjf11dlf",
-      db: "test11",
+      db: "userID",
       charset: "utf8",
     },
     totalDate: {
@@ -50,6 +27,9 @@ class Stock extends React.Component {
       password: "11dnjf11dlf",
       db: "userID",
       charset: "utf8",
+    },
+    predictDateData: {
+      key: "datepredict",
     },
     login: false,
   };
@@ -64,7 +44,7 @@ class Stock extends React.Component {
     })
       .then(function(response) {
         result = response.data;
-        console.log(result);
+        //console.log(result);
         //this.setState({date: [response.data[0].substring(2,4)+"년 "+response.data[0].substring(5,7)+"월 "+response.data[0].substring(8,10)+"일", response.data[0].substring(2,4)+"년 "+response.data[0].substring(5,7)+"월 "+response.data[0].substring(8,10)+"일"]});
       })
       .catch(function(error) {
@@ -94,7 +74,7 @@ class Stock extends React.Component {
     await axios({
       method: "post",
       url:
-        "https://fblp980i44.execute-api.ap-northeast-2.amazonaws.com/test/sfapi2",
+        "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/predict",
       data: Data,
     })
       .then(function(response) {
@@ -104,15 +84,33 @@ class Stock extends React.Component {
         console.log(error);
       });
     //
-    //
-    console.log(result);
-    //아래 4문장이 주석처리한 부분
-    //result.map(v => (v.value = v.value.split(",").map(x => +x)));
-    //result.map(v=>(v.value.map(x=>(parseInt(x)))));
-    //this.setState({ productPredict: result });
-    //this.setOption();
+    //console.log(result);
+
+    result.map(v => (v.value = v.value.split(",").map(x => +x)));
+    result.map(v => v.value.map(x => parseInt(x)));
+    this.setState({ productPredict: result });
+    this.setOption();
 
     ////this.options.series = this.information.map(({value, name, id})=>({name:name, data:value, color:this.colors[id%10]}));
+  };
+  getPredictDate = async Data => {
+    let result;
+    await axios({
+      method: "post",
+      url:
+        "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/predictdate",
+      data: Data,
+    })
+      .then(function(response) {
+        result = response.data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+    //console.log(result);
+    this.setState({ datePredict: result });
+    this.options.xAxis.categories = result;
   };
   //console.log(getget);
   componentDidMount = async () => {
@@ -121,6 +119,7 @@ class Stock extends React.Component {
     } else {
       this.setState({ login: true });
     }
+    await this.getPredictDate(this.state.predictDateData);
     await this.getPredict(this.state.predictData);
     await this.getTotalDate(this.state.totalDate);
     this.setState({ isLoading: false });
@@ -202,7 +201,7 @@ class Stock extends React.Component {
         color: this.colors[id % 10],
       }));
       //console.log(this.state.productPredict)
-      console.log(this.options);
+      //console.log(this.options);
       let itemHeight = 410 - 29.6 * this.state.isShow.length;
       return (
         <section className="container">
