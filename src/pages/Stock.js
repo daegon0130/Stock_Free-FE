@@ -23,8 +23,20 @@ class Stock extends React.Component {
       "8월 20일",
       "8월 21일",
     ],
-    productPredict: [],
-    isShow: [1],
+    productPredict: [
+      { id: 0, name: "후라이드", value: [59, 64, 45, 40, 60, 61, 64, 65, 48, 50] },
+      { id: 1, name: "양념", value: [50, 63, 41, 44, 60, 62, 64, 67, 40, 50] },
+      { id: 2, name: "간장", value: [20, 30, 20, 30, 20, 30, 20, 30, 20, 30] },
+      {
+        id: 3,
+        name: "후라이드 반 양념 반",
+        value: [23, 30, 20, 33, 20, 32, 20, 32, 21, 30],
+      },
+      { id: 4, name: "땡초", value: [53, 40, 50, 63, 70, 52, 50, 52, 61, 60] },
+      { id: 5, name: "소주", value: [44, 44, 44, 34, 20, 32, 34, 32, 41, 30] },
+      { id: 6, name: "맥주", value: [23, 34, 27, 38, 10, 22, 29, 32, 28, 30] },
+    ],
+    isShow: [0],
     predictData: {
       host: "stockfree1.ckta3csfmjh6.ap-northeast-2.rds.amazonaws.com",
       user: "sfadmin",
@@ -39,6 +51,7 @@ class Stock extends React.Component {
       db: "userID",
       charset: "utf8",
     },
+    login: false,
   };
   getTotalDate = async Data => {
     //const getget = await axios.get('https://485stnblna.execute-api.ap-northeast-2.amazonaws.com/testapi');
@@ -92,14 +105,22 @@ class Stock extends React.Component {
       });
     //
     //
-    result.map(v => (v.value = v.value.split(",").map(x => +x)));
+    console.log(result);
+    //아래 4문장이 주석처리한 부분
+    //result.map(v => (v.value = v.value.split(",").map(x => +x)));
     //result.map(v=>(v.value.map(x=>(parseInt(x)))));
-    this.setState({ productPredict: result });
-    this.setOption();
-    //this.options.series = this.information.map(({value, name, id})=>({name:name, data:value, color:this.colors[id%10]}));
+    //this.setState({ productPredict: result });
+    //this.setOption();
+
+    ////this.options.series = this.information.map(({value, name, id})=>({name:name, data:value, color:this.colors[id%10]}));
   };
   //console.log(getget);
   componentDidMount = async () => {
+    if (this.props.location.state === undefined && this.state.login === false) {
+      this.props.history.push("/login");
+    } else {
+      this.setState({ login: true });
+    }
     await this.getPredict(this.state.predictData);
     await this.getTotalDate(this.state.totalDate);
     this.setState({ isLoading: false });
@@ -132,7 +153,7 @@ class Stock extends React.Component {
     },
     chart: {
       type: "line",
-      width: 810,
+      width: 780,
       height: "421",
       animation: false,
     },

@@ -41,6 +41,7 @@ class Home extends React.Component {
       start: "2020-08-10",
       end: "2020-09-20",
     },
+    login: false,
   };
   getTotalDate = async Data => {
     //const getget = await axios.get('https://485stnblna.execute-api.ap-northeast-2.amazonaws.com/testapi');
@@ -138,6 +139,11 @@ class Home extends React.Component {
     //this.options.series = this.information.map(({value, name, id})=>({name:name, data:value, color:this.colors[id%10]}));
   };
   componentDidMount = async () => {
+    if (this.props.location.state === undefined && this.state.login === false) {
+      this.props.history.push("/login");
+    } else {
+      this.setState({ login: true });
+    }
     await this.getDayHistory(this.state.history);
     await this.getWeekHistory(this.state.history);
     await this.getMonthHistory(this.state.history);

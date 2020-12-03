@@ -10,11 +10,11 @@ import Sales from "./pages/Sales";
 function App() {
   return (
     <BrowserRouter>
+      <Route path="/login" exact={true} component={Login} />
       <Route path="/" exact={true} component={Home} />
-      <Route path="/sales" exat={true} component={Sales}/>
+      <Route path="/sales" exat={true} component={Sales} />
       <Route path="/stock" exact={true} component={Stock} />
       <Route path="/upload" exact={true} component={Upload} />
-      <Route path="/login" exact={true} component={Login} />
     </BrowserRouter>
   );
 }

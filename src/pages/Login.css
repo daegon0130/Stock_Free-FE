@@ -27,7 +27,7 @@
   margin: 0;
 }
 .login-form label {
-  display: inline-block;
+  display: block;
   font-size: 15px;
   font-weight: 600;
   color: #818ea3;
@@ -46,7 +46,7 @@
   height: 40px;
   border-radius: 8px;
   border: solid 1px #e1e5eb;
-  margin-bottom: 45px;
+  margin-bottom: 16px;
   font-size: 17px;
   padding-left: 10px;
 }
