@@ -53,7 +53,6 @@
   border-radius: 16px;
   display: inline-block;
   max-height: 465px;
-  overflow: hidden;
 }
 .sales-chart .real-chart{
   margin-bottom: 15px;

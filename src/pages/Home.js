@@ -38,8 +38,8 @@ class Home extends React.Component {
       password: "11dnjf11dlf",
       db: "userID",
       charset: "utf8",
-      start: "2020-08-10",
-      end: "2020-09-20",
+      start: "2020-10-01",
+      end: "2020-10-31",
     },
     login: false,
   };
