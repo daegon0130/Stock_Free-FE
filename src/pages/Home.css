@@ -47,12 +47,14 @@
 
 .sales-chart {
   width: 780px;
+  min-width: 780px;
   background-color: #fff;
   color: #3d5170;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
   border-radius: 16px;
   display: inline-block;
   max-height: 465px;
+  overflow-y: hidden;
 }
 .sales-chart .real-chart{
   margin-bottom: 15px;
