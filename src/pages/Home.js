@@ -44,7 +44,6 @@ class Home extends React.Component {
     login: false,
   };
   getTotalDate = async Data => {
-    //const getget = await axios.get('https://485stnblna.execute-api.ap-northeast-2.amazonaws.com/testapi');
     let result;
     await axios({
       method: "post",
@@ -78,7 +77,6 @@ class Home extends React.Component {
   };
 
   getDayHistory = async Data => {
-    //const getget = await axios.get('https://485stnblna.execute-api.ap-northeast-2.amazonaws.com/testapi');
     let result;
     await axios({
       method: "post",
@@ -88,13 +86,11 @@ class Home extends React.Component {
     })
       .then(function(response) {
         result = response.data;
-        //console.log(result);
       })
       .catch(function(error) {
         console.log(error);
       });
     this.formatDay(result);
-    //this.setState({ isLoading: false });
   };
   getWeekHistory = async Data => {
     let result;
@@ -106,8 +102,6 @@ class Home extends React.Component {
     })
       .then(function(response) {
         result = response.data;
-
-        //console.log(result);
       })
       .catch(function(error) {
         console.log(error);
@@ -124,19 +118,11 @@ class Home extends React.Component {
     })
       .then(function(response) {
         result = response.data;
-        //console.log(result);
       })
       .catch(function(error) {
         console.log(error);
       });
     this.formatMonth(result);
-    //
-    //
-    //result.map(v => (v.value = v.value.split(",").map(x => +x)));
-    //result.map(v=>(v.value.map(x=>(parseInt(x)))));
-    //this.setState({ productPredict: result, isLoading: false });
-    //this.setOption();
-    //this.options.series = this.information.map(({value, name, id})=>({name:name, data:value, color:this.colors[id%10]}));
   };
   componentDidMount = async () => {
     if (this.props.location.state === undefined && this.state.login === false) {
@@ -151,17 +137,7 @@ class Home extends React.Component {
     this.setState({ isLoading: false });
   };
 
-  //componentDidUpdate(prevState) {
-  // 전형적인 사용 사례 (props 비교를 잊지 마세요)
-  //  if (this.state.history !== prevState.history) {
-  //    this.getDayHistory(this.state.history);
-  //    this.getWeekHistory(this.state.history);
-  //    this.getMonthHistory(this.state.history);
-  //  }
-  //}
-
   formatDay = result => {
-    //console.log(result);
     var value = [];
     var values = [];
     var parseDay = [];
@@ -179,7 +155,6 @@ class Home extends React.Component {
         if (i !== 0) {
           result[o][key] *= 1;
           value.push(result[o][key]);
-          //parseDay[o]["value"] = result[o][key];
         } else {
           day.push(result[o][key]);
         }
@@ -202,7 +177,6 @@ class Home extends React.Component {
     this.setState({ day: day, dayHistory: parseDay });
   };
   formatWeek = result => {
-    //console.log(result);
     var value = [];
     var values = [];
     var parseWeek = [];
@@ -221,7 +195,6 @@ class Home extends React.Component {
         if (i !== 0) {
           result[o][0][key] *= 1;
           value.push(result[o][0][key]);
-          //parseDay[o]["value"] = result[o][key];
         } else {
           week.push(result[o][0][key]);
         }
@@ -238,8 +211,6 @@ class Home extends React.Component {
       parseWeek[i].value = value;
       value = [];
     }
-    //console.log(parseWeek);
-    //console.log(week);
     for (o in week) {
       week[o] =
         week[o].substring(5, 7) +
@@ -254,7 +225,6 @@ class Home extends React.Component {
     this.setState({ week: week, weekHistory: parseWeek });
   };
   formatMonth = result => {
-    //console.log(result);
     var value = [];
     var values = [];
     var parseMonth = [];
@@ -289,8 +259,6 @@ class Home extends React.Component {
       parseMonth[i].value = value;
       value = [];
     }
-    //console.log(parseMonth);
-    //console.log(month);
     for (o in month) {
       month[o] = month[o] + "월";
     }
@@ -391,14 +359,12 @@ class Home extends React.Component {
     this.setState({
       isShow: Array.from(new Set(show.concat(data))),
     });
-    //console.log(this.state.isShow)
   };
   handleRemoveChange = data => {
     const show = this.state.isShow;
     this.setState({
       isShow: show.filter(info => info !== data),
     });
-    //console.log(this.state.isShow)
   };
   showMenu(event) {
     event.preventDefault();
@@ -423,7 +389,6 @@ class Home extends React.Component {
     this.setState({ time: x });
   };
   handleStartDate = async event => {
-    //await this.setState({ startDate: event.target.value });
     await this.setState({
       history: {
         ...this.state.history,
@@ -433,7 +398,6 @@ class Home extends React.Component {
     this.handleDate();
   };
   handleEndDate = async event => {
-    //await this.setState({ endDate: event.target.value });
     await this.setState({
       history: {
         ...this.state.history,
@@ -444,13 +408,6 @@ class Home extends React.Component {
     this.handleDate();
   };
   handleDate = () => {
-    //this.setState({
-    //  history: {
-    //    ...this.state.history,
-    //    start: this.state.startDate,
-    //    end: this.state.endDate,
-    //  },
-    //});
     this.getDayHistory(this.state.history);
     this.getWeekHistory(this.state.history);
     this.getMonthHistory(this.state.history);
@@ -602,9 +559,6 @@ class Home extends React.Component {
         }
       }
       const daySum = this.average(dayOptions.series[0].data).toFixed(1);
-      //if (Math.max.apply(null, dayCoreSales[0].value) === 0) {
-      //  dayOptions.yAxis.max = 0;
-      //}
       // 핵심 제품.
       const coreProduct = p[this.state.core].name;
       /// 리스트 높이.

@@ -5,8 +5,7 @@ import Navi from "../components/Navi";
 import Header from "../components/Header";
 import StockTableList from "../components/StockTableList";
 import Chart from "../components/Chart";
-//import StockList from '../components/StockList'
-//https://www.popit.kr/%EC%A2%8C%EC%B6%A9%EC%9A%B0%EB%8F%8C-%EC%95%97-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%95%98%EC%9D%B4%EC%B0%A8%ED%8A%B8%EB%A1%9C-%EC%B0%A8%ED%8A%B8%EB%A5%BC-%EA%B7%B8%EB%A0%B8%EB%8A%94%EB%8D%B0-%EC%B0%A8/
+
 class Stock extends React.Component {
   state = {
     isLoading: true,
@@ -34,7 +33,6 @@ class Stock extends React.Component {
     login: false,
   };
   getTotalDate = async Data => {
-    //const getget = await axios.get('https://485stnblna.execute-api.ap-northeast-2.amazonaws.com/testapi');
     let result;
     await axios({
       method: "post",
@@ -44,8 +42,6 @@ class Stock extends React.Component {
     })
       .then(function(response) {
         result = response.data;
-        //console.log(result);
-        //this.setState({date: [response.data[0].substring(2,4)+"년 "+response.data[0].substring(5,7)+"월 "+response.data[0].substring(8,10)+"일", response.data[0].substring(2,4)+"년 "+response.data[0].substring(5,7)+"월 "+response.data[0].substring(8,10)+"일"]});
       })
       .catch(function(error) {
         console.log(error);
@@ -69,7 +65,6 @@ class Stock extends React.Component {
   };
 
   getPredict = async Data => {
-    //const getget = await axios.get('https://485stnblna.execute-api.ap-northeast-2.amazonaws.com/testapi');
     let result;
     await axios({
       method: "post",
@@ -83,15 +78,11 @@ class Stock extends React.Component {
       .catch(function(error) {
         console.log(error);
       });
-    //
-    //console.log(result);
 
     result.map(v => (v.value = v.value.split(",").map(x => +x)));
     result.map(v => v.value.map(x => parseInt(x)));
     this.setState({ productPredict: result });
     this.setOption();
-
-    ////this.options.series = this.information.map(({value, name, id})=>({name:name, data:value, color:this.colors[id%10]}));
   };
   getPredictDate = async Data => {
     let result;
@@ -108,11 +99,10 @@ class Stock extends React.Component {
         console.log(error);
       });
 
-    //console.log(result);
     this.setState({ datePredict: result });
     this.options.xAxis.categories = result;
   };
-  //console.log(getget);
+
   componentDidMount = async () => {
     if (this.props.location.state === undefined && this.state.login === false) {
       this.props.history.push("/login");
@@ -153,7 +143,7 @@ class Stock extends React.Component {
     chart: {
       type: "line",
       width: 780,
-      height: "421",
+      height: "446",
       animation: false,
     },
     series: [
@@ -176,14 +166,12 @@ class Stock extends React.Component {
     this.setState({
       isShow: Array.from(new Set(show.concat(data))),
     });
-    //console.log(this.state.isShow)
   };
   handleRemoveChange = data => {
     const show = this.state.isShow;
     this.setState({
       isShow: show.filter(info => info !== data),
     });
-    //console.log(this.state.isShow)
   };
   render() {
     const { isLoading, productPredict } = this.state;
@@ -200,8 +188,7 @@ class Stock extends React.Component {
         data: value,
         color: this.colors[id % 10],
       }));
-      //console.log(this.state.productPredict)
-      //console.log(this.options);
+
       let itemHeight = 410 - 29.6 * this.state.isShow.length;
       return (
         <section className="container">
