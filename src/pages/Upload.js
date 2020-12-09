@@ -7,7 +7,7 @@ import Mail from "../components/Mail";
 class Upload extends React.Component {
   state = {
     isLoading: false,
-    date: ["20년 04월 01일", "20년 08월 11일"],
+    date: ["20년 08월 01일", "20년 10월 31일"],
     login: false,
   };
   componentDidMount() {
