@@ -9,7 +9,7 @@ import Sales from "./pages/Sales";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Route path="/login" exact={true} component={Login} />
       <Route path="/" exact={true} component={Home} />
       <Route path="/sales" exat={true} component={Sales} />
