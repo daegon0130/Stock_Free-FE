@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Stock_Free-FE/static/css/main.de86a5fa.chunk.css",
-    "main.js": "/Stock_Free-FE/static/js/main.c024e207.chunk.js",
-    "main.js.map": "/Stock_Free-FE/static/js/main.c024e207.chunk.js.map",
+    "main.js": "/Stock_Free-FE/static/js/main.97f11892.chunk.js",
+    "main.js.map": "/Stock_Free-FE/static/js/main.97f11892.chunk.js.map",
     "runtime-main.js": "/Stock_Free-FE/static/js/runtime-main.efc1415f.js",
     "runtime-main.js.map": "/Stock_Free-FE/static/js/runtime-main.efc1415f.js.map",
     "static/js/2.4443510a.chunk.js": "/Stock_Free-FE/static/js/2.4443510a.chunk.js",
     "static/js/2.4443510a.chunk.js.map": "/Stock_Free-FE/static/js/2.4443510a.chunk.js.map",
     "index.html": "/Stock_Free-FE/index.html",
-    "precache-manifest.b5f78320982216b04e013c4c3b63f192.js": "/Stock_Free-FE/precache-manifest.b5f78320982216b04e013c4c3b63f192.js",
+    "precache-manifest.88b42ad7f9764d8a8cd1d14ffbafdd63.js": "/Stock_Free-FE/precache-manifest.88b42ad7f9764d8a8cd1d14ffbafdd63.js",
     "service-worker.js": "/Stock_Free-FE/service-worker.js",
     "static/css/main.de86a5fa.chunk.css.map": "/Stock_Free-FE/static/css/main.de86a5fa.chunk.css.map",
     "static/js/2.4443510a.chunk.js.LICENSE.txt": "/Stock_Free-FE/static/js/2.4443510a.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.efc1415f.js",
     "static/js/2.4443510a.chunk.js",
     "static/css/main.de86a5fa.chunk.css",
-    "static/js/main.c024e207.chunk.js"
+    "static/js/main.97f11892.chunk.js"
   ]
 }
