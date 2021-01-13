@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+//import axios from "axios";
 import "./Login.css";
 
 class Login extends React.Component {
@@ -24,29 +24,27 @@ class Login extends React.Component {
   }
 
   handleSumbit = async event => {
-    console.log("ID: " + this.state.id + " password: " + this.state.password);
     event.preventDefault();
-    let result;
+    //let result;
     const { history } = this.props;
-    await axios({
-      method: "post",
-      url:
-        "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/login ",
-      data: {
-        userid: this.state.id,
-        userpass: this.state.password,
-      },
-    })
-      .then(function(response) {
-        result = response.data;
-        //console.log(result);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    if (result) {
+    // await axios({
+    //   method: "post",
+    //   url:
+    //     "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/login ",
+    //   data: {
+    //     userid: this.state.id,
+    //     userpass: this.state.password,
+    //   },
+    // })
+    //   .then(function(response) {
+    //     result = response.data;
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
+    if (this.state.id === "stockfree" && this.state.password === "1234") {
       history.push({
-        pathname: "/",
+        pathname: "/stock",
         state: { login: true },
       });
     } else {

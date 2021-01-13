@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+//import axios from "axios";
 import "./Home.css";
 import Navi from "../components/Navi";
 import Header from "../components/Header";
@@ -9,11 +9,11 @@ import coreimg from "../images/핵심 제품.svg";
 class Home extends React.Component {
   state = {
     isLoading: true,
-    startDate: "2020-08-01",
-    endDate: "2020-08-31",
+    startDate: "",
+    endDate: "",
     date: [], //total date range
     oriDate: [], //before parsing
-    day: [],
+    day: [], 
     week: [],
     month: [],
 
@@ -24,39 +24,56 @@ class Home extends React.Component {
     isShow: [0],
     showMenu: false,
     core: 0,
-    time: 1,
-    totalDate: {
-      host: "stockfree1.ckta3csfmjh6.ap-northeast-2.rds.amazonaws.com",
-      user: "sfadmin",
-      password: "11dnjf11dlf",
-      db: "userID",
-      charset: "utf8",
-    },
+    time: 1, // 일별, 주별, 월별 중 사용자가 보는 그래프, 1은 일별 2는 주별 3은 월별
+
+    // totalDate: {
+    //   host: "stockfree1.ckta3csfmjh6.ap-northeast-2.rds.amazonaws.com",
+    //   user: "sfadmin",
+    //   password: "11dnjf11dlf",
+    //   db: "userID",
+    //   charset: "utf8",
+    // },
     history: {
-      host: "stockfree1.ckta3csfmjh6.ap-northeast-2.rds.amazonaws.com",
-      user: "sfadmin",
-      password: "11dnjf11dlf",
-      db: "userID",
-      charset: "utf8",
+      // host: "stockfree1.ckta3csfmjh6.ap-northeast-2.rds.amazonaws.com",
+      // user: "sfadmin",
+      // password: "11dnjf11dlf",
+      // db: "userID",
+      // charset: "utf8",
       start: "2020-10-01",
       end: "2020-10-31",
     },
     login: false,
   };
+
+  database = {
+    totalDate: ["2020-08-01", "2020-10-31"],
+    dayDate: ["08월 01일","08월 02일","08월 03일","08월 04일","08월 05일","08월 06일","08월 07일","08월 08일","08월 09일","08월 10일","08월 11일","08월 12일","08월 13일","08월 14일","08월 15일","08월 16일","08월 17일","08월 18일","08월 19일","08월 20일","08월 21일","08월 22일","08월 23일","08월 24일","08월 25일","08월 26일","08월 27일","08월 28일","08월 29일","08월 30일","08월 31일","09월 01일","09월 02일","09월 03일","09월 04일","09월 05일","09월 06일","09월 07일","09월 08일","09월 09일","09월 10일","09월 11일","09월 12일","09월 13일","09월 14일","09월 15일","09월 16일","09월 17일","09월 18일","09월 19일","09월 20일","09월 21일","09월 22일","09월 23일","09월 24일","09월 25일","09월 26일","09월 27일","09월 28일","09월 29일","09월 30일","10월 01일","10월 02일","10월 03일","10월 04일","10월 05일","10월 06일","10월 07일","10월 08일","10월 09일","10월 10일","10월 11일","10월 12일","10월 13일","10월 14일","10월 15일","10월 16일","10월 17일","10월 18일","10월 19일","10월 20일","10월 21일","10월 22일","10월 23일","10월 24일","10월 25일","10월 26일","10월 27일","10월 28일","10월 29일","10월 30일","10월 31일"]
+    ,
+    dayHistory: [{"id":0,"name":"반반족발(대)","value":[4,4,0,2,2,1,1,0,1,1,2,0,5,1,0,3,0,0,2,2,0,0,1,3,1,3,1,3,0,2,3,3,3,4,0,0,3,6,5,0,2,2,0,0,2,0,0,1,2,0,3,2,1,2,3,1,0,2,1,1,1,0,0,2,0,2,2,6,3,3,0,1,0,0,1,0,3,4,0,1,2,3,1,0,1,1,0,0,0,1,1,0]},{"id":1,"name":"반반족발(중)","value":[0,4,0,0,2,0,1,0,2,1,2,0,3,5,0,2,0,1,1,4,5,0,0,1,3,5,1,1,0,3,5,2,2,3,3,0,3,0,3,1,0,0,0,1,2,3,0,3,2,0,1,5,1,1,2,0,0,1,4,1,1,0,0,2,2,1,1,1,2,0,0,3,3,3,0,1,2,2,0,1,1,2,2,0,0,0,0,0,1,3,1,0]},{"id":2,"name":"튀지(대)","value":[0,1,0,1,0,0,0,0,0,1,0,0,0,2,0,1,0,0,0,0,0,0,0,0,0,1,0,2,0,2,0,0,0,1,2,0,0,1,0,1,0,1,0,0,1,0,1,1,0,0,1,0,0,1,1,1,0,0,0,1,1,0,0,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,2,0]},{"id":3,"name":"튀지(중)","value":[0,2,0,0,1,0,0,0,0,1,2,0,2,1,0,0,0,1,0,0,1,0,0,0,1,0,1,0,0,1,0,1,0,2,0,0,1,4,0,1,0,1,0,1,0,0,0,0,2,0,3,2,3,1,2,2,0,0,0,1,0,0,0,1,0,1,1,1,1,1,0,1,1,0,1,1,0,0,0,1,1,1,0,3,0,0,0,0,2,0,0,0]},{"id":4,"name":"혼자먹는족발","value":[3,3,0,0,0,0,0,0,1,1,2,2,0,3,0,1,0,2,2,2,2,0,0,0,2,0,1,2,0,2,2,2,3,1,0,0,1,1,2,0,3,1,0,2,4,2,6,1,1,0,1,1,2,3,1,1,0,1,0,2,0,0,0,1,0,2,1,2,5,0,0,0,0,3,1,1,1,2,0,0,1,0,0,0,0,1,0,2,0,2,1,0]},{"id":5,"name":"불튀족발(대)","value":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,1,0,1,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]},{"id":6,"name":"불튀족발(중)","value":[0,1,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0]},{"id":7,"name":"막국수","value":[1,3,0,0,0,0,1,0,2,2,2,0,7,3,0,3,0,3,2,5,2,0,0,2,3,4,3,4,0,6,2,2,3,7,1,0,1,4,2,2,1,2,0,2,3,1,1,4,3,0,4,4,5,1,6,1,0,1,3,1,1,0,0,2,1,3,3,2,2,0,0,3,0,4,1,1,1,4,0,1,1,3,0,2,1,1,0,0,0,2,3,0]},{"id":8,"name":"등갈비튀김","value":[0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,1,2,0,0,0,1,2,1,1,0,0,0,0,0,2,0,1,1,0,0,0,1,0,0,0,0,0,1,1,0,1,1,0,0,0,1,0,0,0,1,0,1,1,1,2,0,0,0,0,0,0,1,0,2,0,0,1,0,1,0,0,0,0,0,1,0,1,0]},{"id":9,"name":"쫄면","value":[0,0,0,2,1,1,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,1,2,1,0,0,0,0,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,2,1,1,0,0,0,0,0,0,0,0]},{"id":10,"name":"꼬막비빔밥","value":[0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2,0,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,0]},{"id":11,"name":"주먹밥","value":[5,10,0,4,2,1,0,0,2,0,2,0,5,1,0,3,0,0,1,2,3,0,0,0,3,3,1,1,0,4,0,5,1,0,3,0,3,4,0,0,0,1,0,1,3,0,1,3,1,0,0,4,1,2,2,2,0,1,0,3,1,0,0,1,2,2,3,2,1,0,0,1,1,0,0,1,4,0,0,1,2,3,1,1,0,0,0,0,0,3,3,0]},{"id":12,"name":"사천볶음밥","value":[0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0]},{"id":13,"name":"떡볶이","value":[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":14,"name":"어묵탕","value":[0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":15,"name":"계란찜","value":[0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":16,"name":"콜라 1.25L","value":[0,3,0,0,0,0,0,0,1,1,2,0,2,2,0,0,0,0,0,1,2,0,0,1,1,3,1,2,0,2,1,5,1,6,1,0,4,2,1,0,0,1,0,1,1,1,0,4,1,0,1,2,1,0,1,1,0,1,0,0,1,0,0,2,0,0,2,2,0,0,0,1,1,1,1,0,2,2,0,1,3,2,0,1,1,0,0,0,0,2,1,0]},{"id":17,"name":"소주","value":[0,0,0,0,0,1,0,0,2,1,6,2,3,2,0,3,4,5,0,3,0,0,1,4,4,3,9,1,0,2,3,0,1,0,2,0,0,0,10,0,0,5,0,0,0,0,0,0,0,0,0,8,3,0,0,0,0,0,0,0,0,0,0,2,0,12,0,2,8,1,0,0,0,0,0,1,2,21,0,0,2,1,3,0,0,0,0,0,4,0,0,0]},{"id":18,"name":"참이슬후레쉬","value":[2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,2,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":19,"name":"진로이즈백","value":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":20,"name":"처음처럼","value":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":21,"name":"소주행사","value":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0]},{"id":22,"name":"맥주","value":[0,0,0,0,0,1,0,0,0,0,0,0,6,1,0,5,0,1,2,0,2,0,1,2,0,0,0,0,0,0,0,0,1,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,6,1,3,0,0,0,0,0,0,0,0,0,0,0,0,5,0,2,0,0,0,0,0,0,0,3,4,2,0,0,0,0,0,0,0,0,0,0,8,0,0,0]},{"id":23,"name":"테라병","value":[0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":24,"name":"테라생맥주1000cc","value":[0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,4,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0]},{"id":25,"name":"생맥주300cc","value":[0,0,0,0,0,2,0,0,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":26,"name":"생맥주500cc","value":[0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,3,0,0,0,0,0,0,5,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":27,"name":"생맥주1000cc","value":[2,0,0,0,0,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,4,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":28,"name":"생맥주2700cc","value":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":29,"name":"음료수","value":[0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,1,0,0,0,0,1,1,2,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,1,0,0,0,0,0,1,0,0,0,0,1,0,2,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0]},{"id":30,"name":"콜라500ml","value":[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]},{"id":31,"name":"칠성사이다125L","value":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":32,"name":"환타파인애플355ml","value":[0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"id":33,"name":"배달횟수","value":[4,6,0,3,1,1,0,0,1,2,1,1,1,4,0,2,0,3,2,2,2,0,0,1,0,1,1,2,0,3,1,4,3,1,0,0,2,1,3,0,3,2,0,1,3,2,6,1,0,0,1,3,1,1,1,0,0,0,1,5,0,0,0,1,0,2,1,2,2,0,0,1,0,2,1,2,1,1,0,1,1,0,1,0,0,1,0,2,0,3,1,0]},{"id":34,"name":"공기밥","value":[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0]}],
+
+    weekDate:["08월 01일 ~ 08월 01일","08월 02일 ~ 08월 08일","08월 09일 ~ 08월 15일","08월 16일 ~ 08월 22일","08월 23일 ~ 08월 29일","08월 30일 ~ 09월 05일","09월 06일 ~ 09월 12일","09월 13일 ~ 09월 19일","09월 20일 ~ 09월 26일","09월 27일 ~ 10월 03일","10월 04일 ~ 10월 10일","10월 11일 ~ 10월 17일","10월 18일 ~ 10월 24일","10월 25일 ~ 10월 31일"],
+    weekHistory:[{"id":0,"name":"반반족발(대)","value":[8,10,10,7,12,15,18,5,12,7,16,9,8,3]},{"id":1,"name":"반반족발(중)","value":[4,7,13,13,11,18,7,11,10,9,7,14,6,5]},{"id":2,"name":"튀지(대)","value":[1,2,3,1,3,5,3,3,4,2,4,0,2,2]},{"id":3,"name":"튀지(중)","value":[2,3,6,2,2,4,7,3,13,2,5,4,6,2]},{"id":4,"name":"혼자먹는족발","value":[6,3,9,9,5,10,8,16,9,4,10,8,1,6]},{"id":5,"name":"불튀족발(대)","value":[0,0,0,0,3,3,2,0,3,1,1,0,1,0]},{"id":6,"name":"불튀족발(중)","value":[1,4,0,2,0,0,3,2,1,0,2,1,2,0]},{"id":7,"name":"막국수","value":[4,4,16,15,16,21,12,14,21,8,11,14,8,6]},{"id":8,"name":"등갈비튀김","value":[1,2,0,3,3,5,4,1,4,2,5,3,2,2]},{"id":9,"name":"쫄면","value":[0,4,2,1,4,3,1,1,3,0,2,1,4,0]},{"id":10,"name":"꼬막비빔밥","value":[0,0,3,2,1,3,0,1,2,2,1,2,0,3]},{"id":11,"name":"주먹밥","value":[15,17,10,9,8,13,8,9,11,6,10,7,8,6]},{"id":12,"name":"사천볶음밥","value":[0,1,2,2,2,1,1,0,0,0,1,1,1,0]},{"id":13,"name":"떡볶이","value":[2,0,0,0,0,2,1,2,2,0,2,3,0,0]},{"id":14,"name":"어묵탕","value":[1,2,0,1,0,0,0,0,1,2,3,1,0,0]},{"id":15,"name":"계란찜","value":[0,1,0,1,2,0,2,0,1,0,1,1,0,0]},{"id":16,"name":"콜라 1.25L","value":[3,3,8,3,8,16,8,8,6,4,4,8,8,3]},{"id":17,"name":"소주","value":[0,1,16,15,22,8,15,0,11,2,23,24,6,4]},{"id":18,"name":"참이슬후레쉬","value":[3,1,0,0,0,2,2,1,2,1,2,2,0,0]},{"id":19,"name":"진로이즈백","value":[0,0,0,1,0,0,0,0,0,0,1,0,0,0]},{"id":20,"name":"처음처럼","value":[0,0,0,0,5,0,0,0,2,3,0,0,0,0]},{"id":21,"name":"소주행사","value":[0,0,0,0,0,0,0,0,0,0,0,0,0,2]},{"id":22,"name":"맥주","value":[0,1,7,10,3,1,4,0,10,0,7,9,0,8]},{"id":23,"name":"테라병","value":[1,1,0,1,0,0,0,0,0,0,0,0,0,0]},{"id":24,"name":"테라생맥주1000cc","value":[1,1,1,0,0,3,0,5,0,2,0,3,0,2]},{"id":25,"name":"생맥주300cc","value":[0,2,14,0,0,0,1,0,0,0,0,0,0,0]},{"id":26,"name":"생맥주500cc","value":[0,2,0,0,5,3,7,0,0,0,0,1,0,0]},{"id":27,"name":"생맥주1000cc","value":[2,2,1,0,2,0,6,0,1,0,0,1,0,0]},{"id":28,"name":"생맥주2700cc","value":[0,0,0,0,0,0,0,1,0,0,0,0,0,0]},{"id":29,"name":"음료수","value":[0,0,2,2,4,4,0,1,4,2,3,1,1,1]},{"id":30,"name":"콜라500ml","value":[0,0,1,0,0,0,0,0,0,0,0,0,1,0]},{"id":31,"name":"칠성사이다125L","value":[0,0,0,0,1,0,0,1,0,0,0,0,0,0]},{"id":32,"name":"환타파인애플355ml","value":[1,1,0,0,0,0,0,0,1,0,0,0,0,0]},{"id":33,"name":"배달횟수","value":[10,11,10,11,5,12,11,13,7,7,7,8,3,7]},{"id":34,"name":"공기밥","value":[0,0,1,1,0,3,0,0,0,0,0,0,2,0]}],
+
+    monthDate: ["08월","09월","10월"],
+    monthHistory:[{"id":0,"name":"반반족발(대)","value":[48,50,38]},{"id":1,"name":"반반족발(중)","value":[52,45,34]},{"id":2,"name":"튀지(대)","value":[11,15,8]},{"id":3,"name":"튀지(중)","value":[14,27,18]},{"id":4,"name":"혼자먹는족발","value":[33,42,26]},{"id":5,"name":"불튀족발(대)","value":[4,8,2]},{"id":6,"name":"불튀족발(중)","value":[6,6,5]},{"id":7,"name":"막국수","value":[60,66,41]},{"id":8,"name":"등갈비튀김","value":[11,12,13]},{"id":9,"name":"쫄면","value":[11,8,7]},{"id":10,"name":"꼬막비빔밥","value":[7,7,6]},{"id":11,"name":"주먹밥","value":[53,42,32]},{"id":12,"name":"사천볶음밥","value":[7,2,3]},{"id":13,"name":"떡볶이","value":[3,6,5]},{"id":14,"name":"어묵탕","value":[3,1,6]},{"id":15,"name":"계란찜","value":[4,3,2]},{"id":16,"name":"콜라 1.25L","value":[25,37,25]},{"id":17,"name":"소주","value":[59,29,59]},{"id":18,"name":"참이슬후레쉬","value":[3,8,4]},{"id":19,"name":"진로이즈백","value":[1,0,1]},{"id":20,"name":"처음처럼","value":[5,5,0]},{"id":21,"name":"소주행사","value":[0,0,2]},{"id":22,"name":"맥주","value":[21,15,24]},{"id":23,"name":"테라병","value":[2,0,0]},{"id":24,"name":"테라생맥주1000cc","value":[3,9,5]},{"id":25,"name":"생맥주300cc","value":[16,1,0]},{"id":26,"name":"생맥주500cc","value":[10,7,1]},{"id":27,"name":"생맥주1000cc","value":[7,7,1]},{"id":28,"name":"생맥주2700cc","value":[0,1,0]},{"id":29,"name":"음료수","value":[12,6,7]},{"id":30,"name":"콜라500ml","value":[1,0,1]},{"id":31,"name":"칠성사이다125L","value":[1,1,0]},{"id":32,"name":"환타파인애플355ml","value":[1,1,0]},{"id":33,"name":"배달횟수","value":[45,45,26]},{"id":34,"name":"공기밥","value":[2,3,2]}]
+
+  };
+
   getTotalDate = async Data => {
     let result;
-    await axios({
-      method: "post",
-      url:
-        "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/history",
-      data: Data,
-    })
-      .then(function(response) {
-        result = response.data;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    // await axios({
+    //   method: "post",
+    //   url:
+    //     "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/history",
+    //   data: Data,
+    // })
+    //   .then(function(response) {
+    //     result = response.data;
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
+    result = this.database.totalDate;
     this.setState({
       date: [
         result[0].substring(2, 4) +
@@ -77,52 +94,162 @@ class Home extends React.Component {
   };
 
   getDayHistory = async Data => {
-    let result;
-    await axios({
-      method: "post",
-      url:
-        "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/day",
-      data: Data,
-    })
-      .then(function(response) {
-        result = response.data;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    this.formatDay(result);
+    function getIndex(month, day){
+      let index = 0;
+      let mInterval = month -8;
+      if(mInterval===1){
+        index += 31;
+      }else if (mInterval ===2){
+        index += 61;
+      }
+      let dInterval = day-1;
+      index += dInterval;
+
+      return index;
+    }
+
+    const _ = require("lodash")
+    let dayData = _.cloneDeep(this.database.dayHistory);
+    
+    // await axios({
+    //   method: "post",
+    //   url:
+    //     "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/day",
+    //   data: Data,
+    // })
+    //   .then(function(response) {
+    //     result = response.data;
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
+    let start = Data.start;
+    let end = Data.end;
+
+    let startMonth = start.substring(5,7)*1;
+    let startDay = start.substring(8, 10)*1;
+    let endMonth = end.substring(5,7)*1;
+    let endDay = end.substring(8, 10)*1;
+
+    let startIndex = getIndex(startMonth, startDay);
+    let endIndex = getIndex(endMonth, endDay);
+
+    for (var product in dayData){
+      dayData[product].value = dayData[product].value.slice(startIndex, endIndex+1);
+    }
+    
+    let dayDate = _.cloneDeep(this.database.dayDate);
+    dayDate = dayDate.slice(startIndex, endIndex+1);
+
+    this.setState({ day: dayDate, dayHistory: dayData });
+    //this.formatDay(result);
   };
   getWeekHistory = async Data => {
-    let result;
-    await axios({
-      method: "post",
-      url:
-        "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/week",
-      data: Data,
-    })
-      .then(function(response) {
-        result = response.data;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    this.formatWeek(result);
+    // let result;
+    // await axios({
+    //   method: "post",
+    //   url:
+    //     "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/week",
+    //   data: Data,
+    // })
+    //   .then(function(response) {
+    //     result = response.data;
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
+    // this.formatWeek(result);
+
+    const _ = require("lodash");
+
+    let weekData = _.cloneDeep(this.database.weekHistory);
+
+    let start = Data.start;
+    let end = Data.end;
+
+    let startMonth = start.substring(5,7)*1;
+    let startDay = start.substring(8, 10)*1;
+    let endMonth = end.substring(5,7)*1;
+    let endDay = end.substring(8, 10)*1;
+
+    
+    let weekDate = _.cloneDeep(this.database.weekDate);
+
+    let startWeekIndex, endWeekIndex;
+    for (let date in weekDate){
+      if (startMonth === weekDate[date].substring(0, 2)*1){
+        if(startDay < weekDate[date].substring(4, 6)*1){
+          startWeekIndex = date*1 -1;
+          break;
+        }
+        if(date*1 === weekDate.length-1 || date*1 === 9 || date*1 === 5){
+          startWeekIndex = date*1;
+        }
+      }
+    }
+
+    for (let date in weekDate){
+      if (endMonth === weekDate[date].substring(10, 12)*1){
+        if(endDay <= weekDate[date].substring(14, 16)*1){
+          endWeekIndex = date*1;
+          break;
+        }
+        if(endMonth+1 === weekDate[date*1+1].substring(10, 12)*1){
+          endWeekIndex = date*1 +1;
+          break;
+        }
+      }
+    }
+
+    weekDate = weekDate.slice(startWeekIndex, endWeekIndex+1);
+    for (var product in weekData){
+      weekData[product].value = weekData[product].value.slice(startWeekIndex, endWeekIndex+1);
+    }
+
+    this.setState({ week: weekDate, weekHistory: weekData });
+    //this.formatWeek(result);
+    //console.log(weekDate);
   };
   getMonthHistory = async Data => {
-    let result;
-    await axios({
-      method: "post",
-      url:
-        "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/month",
-      data: Data,
-    })
-      .then(function(response) {
-        result = response.data;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    this.formatMonth(result);
+    // let result;
+    // await axios({
+    //   method: "post",
+    //   url:
+    //     "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/month",
+    //   data: Data,
+    // })
+    //   .then(function(response) {
+    //     result = response.data;
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
+    // this.formatMonth(result);
+
+    const _ = require("lodash");
+    let monthData = _.cloneDeep(this.database.monthHistory);
+
+    let start = Data.start;
+    let end = Data.end;
+
+    let startMonth = start.substring(5,7)*1;
+    let endMonth = end.substring(5,7)*1;
+
+    let startIndex = startMonth-8;
+    let endIndex = endMonth-8;
+
+    for (var product in monthData){
+      monthData[product].value = monthData[product].value.slice(startIndex, endIndex+1);
+    }
+    
+    let monthDate = _.cloneDeep(this.database.monthDate);
+
+    monthDate = monthDate.slice(startIndex, endIndex+1);
+    //console.log(monthData);
+
+    this.setState({ month: monthDate, monthHistory: monthData });
+    //this.formatMonth(result);
+    //console.log(monthDate);
   };
   componentDidMount = async () => {
     if (this.props.location.state === undefined && this.state.login === false) {
@@ -137,133 +264,141 @@ class Home extends React.Component {
     this.setState({ isLoading: false });
   };
 
-  formatDay = result => {
-    var value = [];
-    var values = [];
-    var parseDay = [];
-    var day = [];
-    var i = 0;
-    for (var key in result[0]) {
-      if (i !== 0) {
-        parseDay.push({ id: i - 1, name: key });
-      }
-      i = i + 1;
-    }
-    i = 0;
-    for (var o in result) {
-      for (key in result[o]) {
-        if (i !== 0) {
-          result[o][key] *= 1;
-          value.push(result[o][key]);
-        } else {
-          day.push(result[o][key]);
-        }
-        i = i + 1;
-      }
-      i = 0;
-      values.push(value);
-      value = [];
-    }
-    for (i = 0; i < values[0].length; i = i + 1) {
-      for (var j = 0; j < values.length; j = j + 1) {
-        value.push(values[j][i]);
-      }
-      parseDay[i].value = value;
-      value = [];
-    }
-    for (o in day) {
-      day[o] = day[o].substring(5, 7) + "월 " + day[o].substring(8, 10) + "일";
-    }
-    this.setState({ day: day, dayHistory: parseDay });
-  };
-  formatWeek = result => {
-    var value = [];
-    var values = [];
-    var parseWeek = [];
-    var week = [];
-    var i = 0;
-    for (var key in result[0][0]) {
-      if (i !== 0) {
-        parseWeek.push({ id: i - 1, name: key });
-      }
-      i = i + 1;
-    }
+  // api로 받은 데이터 파싱해서 처리 -> formatDay, formatWeek, formatMonth
 
-    i = 0;
-    for (var o in result) {
-      for (key in result[o][0]) {
-        if (i !== 0) {
-          result[o][0][key] *= 1;
-          value.push(result[o][0][key]);
-        } else {
-          week.push(result[o][0][key]);
-        }
-        i = i + 1;
-      }
-      i = 0;
-      values.push(value);
-      value = [];
-    }
-    for (i = 0; i < values[0].length; i = i + 1) {
-      for (var j = 0; j < values.length; j = j + 1) {
-        value.push(values[j][i]);
-      }
-      parseWeek[i].value = value;
-      value = [];
-    }
-    for (o in week) {
-      week[o] =
-        week[o].substring(5, 7) +
-        "월 " +
-        week[o].substring(8, 10) +
-        "일 ~ " +
-        week[o].substring(18, 20) +
-        "월 " +
-        week[o].substring(21, 23) +
-        "일";
-    }
-    this.setState({ week: week, weekHistory: parseWeek });
-  };
-  formatMonth = result => {
-    var value = [];
-    var values = [];
-    var parseMonth = [];
-    var month = [];
-    var i = 0;
-    for (var key in result[0][0]) {
-      if (i !== 0) {
-        parseMonth.push({ id: i - 1, name: key });
-      }
-      i = i + 1;
-    }
+  // formatDay = result => {
+  //   var value = [];
+  //   var values = [];
+  //   var parseDay = [];
+  //   var day = [];
+  //   var i = 0;
+  //   for (var key in result[0]) {
+  //     if (i !== 0) {
+  //       parseDay.push({ id: i - 1, name: key });
+  //     }
+  //     i = i + 1;
+  //   }
+  //   i = 0;
+  //   for (var o in result) {
+  //     for (key in result[o]) {
+  //       if (i !== 0) {
+  //         result[o][key] *= 1;
+  //         value.push(result[o][key]);
+  //       } else {
+  //         day.push(result[o][key]);
+  //       }
+  //       i = i + 1;
+  //     }
+  //     i = 0;
+  //     values.push(value);
+  //     value = [];
+  //   }
+  //   for (i = 0; i < values[0].length; i = i + 1) {
+  //     for (var j = 0; j < values.length; j = j + 1) {
+  //       value.push(values[j][i]);
+  //     }
+  //     parseDay[i].value = value;
+  //     value = [];
+  //   }
+  //   for (o in day) {
+  //     day[o] = day[o].substring(5, 7) + "월 " + day[o].substring(8, 10) + "일";
+  //   }
+  //   this.setState({ day: day, dayHistory: parseDay });
+  //   console.log(this.state.day);
+  //   console.log(this.state.dayHistory);
+  // };
+  // formatWeek = result => {
+  //   var value = [];
+  //   var values = [];
+  //   var parseWeek = [];
+  //   var week = [];
+  //   var i = 0;
+  //   for (var key in result[0][0]) {
+  //     if (i !== 0) {
+  //       parseWeek.push({ id: i - 1, name: key });
+  //     }
+  //     i = i + 1;
+  //   }
 
-    i = 0;
-    for (var o in result) {
-      for (key in result[o][0]) {
-        if (i !== 0) {
-          result[o][0][key] *= 1;
-          value.push(result[o][0][key]);
-        } else {
-          month.push(result[o][0][key]);
-        }
-        i = i + 1;
-      }
-      i = 0;
-      values.push(value);
-      value = [];
-    }
-    for (i = 0; i < values[0].length; i = i + 1) {
-      for (var j = 0; j < values.length; j = j + 1) {
-        value.push(values[j][i]);
-      }
-      parseMonth[i].value = value;
-      value = [];
-    }
-    for (o in month) {
-      month[o] = month[o] + "월";
-    }
-    this.setState({ month: month, monthHistory: parseMonth });
-  };
+  //   i = 0;
+  //   for (var o in result) {
+  //     for (key in result[o][0]) {
+  //       if (i !== 0) {
+  //         result[o][0][key] *= 1;
+  //         value.push(result[o][0][key]);
+  //       } else {
+  //         week.push(result[o][0][key]);
+  //       }
+  //       i = i + 1;
+  //     }
+  //     i = 0;
+  //     values.push(value);
+  //     value = [];
+  //   }
+  //   for (i = 0; i < values[0].length; i = i + 1) {
+  //     for (var j = 0; j < values.length; j = j + 1) {
+  //       value.push(values[j][i]);
+  //     }
+  //     parseWeek[i].value = value;
+  //     value = [];
+  //   }
+  //   for (o in week) {
+  //     week[o] =
+  //       week[o].substring(5, 7) +
+  //       "월 " +
+  //       week[o].substring(8, 10) +
+  //       "일 ~ " +
+  //       week[o].substring(18, 20) +
+  //       "월 " +
+  //       week[o].substring(21, 23) +
+  //       "일";
+  //   }
+  //   this.setState({ week: week, weekHistory: parseWeek });
+  //   console.log(this.state.week);
+  //   console.log(this.state.weekHistory);
+  // };
+  // formatMonth = result => {
+  //   var value = [];
+  //   var values = [];
+  //   var parseMonth = [];
+  //   var month = [];
+  //   var i = 0;
+  //   for (var key in result[0][0]) {
+  //     if (i !== 0) {
+  //       parseMonth.push({ id: i - 1, name: key });
+  //     }
+  //     i = i + 1;
+  //   }
+
+  //   i = 0;
+  //   for (var o in result) {
+  //     for (key in result[o][0]) {
+  //       if (i !== 0) {
+  //         result[o][0][key] *= 1;
+  //         value.push(result[o][0][key]);
+  //       } else {
+  //         month.push(result[o][0][key]);
+  //       }
+  //       i = i + 1;
+  //     }
+  //     i = 0;
+  //     values.push(value);
+  //     value = [];
+  //   }
+  //   for (i = 0; i < values[0].length; i = i + 1) {
+  //     for (var j = 0; j < values.length; j = j + 1) {
+  //       value.push(values[j][i]);
+  //     }
+  //     parseMonth[i].value = value;
+  //     value = [];
+  //   }
+  //   for (o in month) {
+  //     month[o] = month[o] + "월";
+  //   }
+  //   this.setState({ month: month, monthHistory: parseMonth });
+  //   console.log(this.state.month);
+  //   console.log(this.state.monthHistory);
+  // };
 
   showMenu = this.showMenu.bind(this);
   closeMenu = this.closeMenu.bind(this);
@@ -404,7 +539,6 @@ class Home extends React.Component {
         end: event.target.value,
       },
     });
-    console.log(this.state.history);
     this.handleDate();
   };
   handleDate = () => {
@@ -575,6 +709,7 @@ class Home extends React.Component {
                 lastDate={this.state.date[1]}
               />
             </div>
+
             <div className="sales-history">
               <h1>판매 추이</h1>
               <div className="first-row">

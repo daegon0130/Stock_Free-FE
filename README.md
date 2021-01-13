@@ -2,5 +2,5 @@
 
 **Yonsei AI startup Course 2020**
 
-_Click **[here](https://master.d2ev6mjr9u3t41.amplifyapp.com)** to see the result_  
-(id:yeoju, pw:12dnjf2dlf )
+_Click **[here](https://daegon0130.github.io/Stock_Free-FE)** to see the result_  
+(id:stockfree, pw:1234 )

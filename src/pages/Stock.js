@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+//import axios from "axios";
 import "./Stock.css";
 import Navi from "../components/Navi";
 import Header from "../components/Header";
@@ -12,7 +12,8 @@ class Stock extends React.Component {
     date: [],
     datePredict: [],
     productPredict: [],
-    isShow: [1],
+    isShow: [0],
+    /*
     predictData: {
       host: "stockfree1.ckta3csfmjh6.ap-northeast-2.rds.amazonaws.com",
       user: "sfadmin",
@@ -26,81 +27,231 @@ class Stock extends React.Component {
       password: "11dnjf11dlf",
       db: "userID",
       charset: "utf8",
-    },
+    },*/
     predictDateData: {
       key: "datepredict",
     },
     login: false,
   };
-  getTotalDate = async Data => {
-    let result;
-    await axios({
-      method: "post",
-      url:
-        "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/history",
-      data: Data,
-    })
-      .then(function(response) {
-        result = response.data;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+
+  getTotalDate = async data => {
+    // let result;
+    // await axios({
+    //   method: "post",
+    //   url:
+    //     "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/history",
+    //   data: Data,
+    // })
+    //   .then(function(response) {
+    //     result = response.data;
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
     this.setState({
       date: [
-        result[0].substring(2, 4) +
+        this.Data.totalDate[0].substring(2, 4) +
           "년 " +
-          result[0].substring(5, 7) +
+          this.Data.totalDate[0].substring(5, 7) +
           "월 " +
-          result[0].substring(8, 10) +
+          this.Data.totalDate[0].substring(8, 10) +
           "일",
-        result[1].substring(2, 4) +
+        this.Data.totalDate[1].substring(2, 4) +
           "년 " +
-          result[1].substring(5, 7) +
+          this.Data.totalDate[1].substring(5, 7) +
           "월 " +
-          result[1].substring(8, 10) +
+          this.Data.totalDate[1].substring(8, 10) +
           "일",
       ],
     });
   };
 
-  getPredict = async Data => {
-    let result;
-    await axios({
-      method: "post",
-      url:
-        "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/predict",
-      data: Data,
-    })
-      .then(function(response) {
-        result = response.data;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  Data = {
+    predictDate: [
+      "11월 1일",
+      "11월 2일",
+      "11월 3일",
+      "11월 4일",
+      "11월 5일",
+      "11월 6일",
+      "11월 7일",
+      "11월 8일",
+      "11월 9일",
+      "11월 10일",
+    ],
+    totalDate: ["2020-08-01", "2020-10-31"],
+    predict: [
+      {
+        id: 1,
+        name: "반반족발(대)",
+        value: [1.92, 0.06, 0.93, 2.88, 0.09, 1.93, 0.06, 0.92, 0.91, 2.87],
+      },
+      {
+        id: 2,
+        name: "반반족발(중)",
+        value: [1.1, 2.09, 1.09, 1.09, 0.09, 0.07, 0.06, 1.12, 1.09, 3.08],
+      },
+      {
+        id: 3,
+        name: "튀지(대)",
+        value: [0.03, 0.03, 0.95, 0.03, 0.91, 0.03, 0.02, 0.97, 0.05, 0.04],
+      },
+      {
+        id: 4,
+        name: "튀지(중)",
+        value: [0.05, 0.03, 1.06, 0.02, 0.03, 0.02, 0.02, 0.03, 0.04, 0.04],
+      },
+      {
+        id: 5,
+        name: "불튀족발(대)",
+        value: [0.02, 0.01, 0.02, 0.02, 0.02, 0.98, 0.01, 0.02, 0.01, 0.01],
+      },
+      {
+        id: 6,
+        name: "불튀족발(중)",
+        value: [0.02, 0.02, 0.02, 0.02, 1.05, 0.01, 0.02, 0.01, 0.02, 0.02],
+      },
+      {
+        id: 7,
+        name: "혼자먹는족발",
+        value: [0.93, 0.89, 2.89, 0.92, 0.09, 0.06, 0.09, 0.09, 1.88, 0.07],
+      },
+      {
+        id: 8,
+        name: "막국수",
+        value: [3.07, 1.14, 2.05, 2.06, 1.06, 2.06, 0.08, 1.06, 0.07, 0.98],
+      },
+      {
+        id: 9,
+        name: "등갈비튀김",
+        value: [1.97, 0.95, 0.05, 0.04, 0.03, 0.02, 0.03, 0.04, 0.04, 0.04],
+      },
+      {
+        id: 10,
+        name: "쫄면",
+        value: [0.04, 0.03, 0.04, 1.04, 0.03, 0.03, 0.03, 0.03, 0.05, 0.03],
+      },
+      {
+        id: 11,
+        name: "꼬막비빔밥",
+        value: [0.02, 0.01, 0.01, 0.01, 0.02, 0.01, 0.02, 0.03, 0.01, 0.01],
+      },
+      {
+        id: 12,
+        name: "주먹밥",
+        value: [0.07, 0.93, 1.89, 1.88, 0.92, 0.06, 0.05, 0.92, 1.92, 2.88],
+      },
+      { id: 13, name: "사천볶음밥", value: [0.01, 0, 0, 0, 0, 0, 0.01, 0.01, 1, 0] },
+      {
+        id: 14,
+        name: "떡볶이",
+        value: [0.01, 0.02, 1.03, 0.01, 0.01, 0, 0, 0.01, 0.01, 0.01],
+      },
+      {
+        id: 15,
+        name: "어묵탕",
+        value: [0.01, 0.95, 0.01, 0, 0, 0, 0.01, 0, 0.01, 0],
+      },
+      { id: 16, name: "계란찜", value: [0, 0, 0, 0, 0.01, 0, 0, 0.01, 0.01, 0] },
+      {
+        id: 17,
+        name: "콜라125",
+        value: [2.06, 0.07, 0.06, 1.05, 0.05, 0.05, 0.06, 1.06, 0.05, 0.05],
+      },
+      {
+        id: 18,
+        name: "소주",
+        value: [9.18, 2.22, 0.16, 3.17, 0.14, 0.08, 0.12, 0.16, 0.15, 5.13],
+      },
+      {
+        id: 19,
+        name: "참이슬후레쉬",
+        value: [0.01, 0.01, 0, 0.01, 0.01, 0.01, 0.02, 0.01, 0, 0],
+      },
+      { id: 20, name: "진로이즈백", value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      {
+        id: 21,
+        name: "처음처럼",
+        value: [2.01, 0.01, 0.01, 0, 0, 0.01, 0, 0, 0, 0],
+      },
+      { id: 22, name: "소주행사", value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      {
+        id: 23,
+        name: "맥주",
+        value: [5.89, 1.78, 0.23, 0.2, 0.21, 0.15, 0.14, 0.19, 0.82, 0.2],
+      },
+      { id: 24, name: "테라병", value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      {
+        id: 25,
+        name: "테라생맥주1000cc",
+        value: [0.03, 0.02, 0.02, 0.01, 0.02, 0.02, 0.02, 0.04, 0.02, 0.01],
+      },
+      { id: 26, name: "생맥주300cc", value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      {
+        id: 27,
+        name: "생맥주500cc",
+        value: [3.26, 0.05, 0.06, 0.06, 0.06, 0.08, 0.06, 20.22, 0.04, 0.03],
+      },
+      {
+        id: 28,
+        name: "생맥주1000cc",
+        value: [0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0, 0],
+      },
+      { id: 29, name: "생맥주2700cc", value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      {
+        id: 30,
+        name: "음료수",
+        value: [0.92, 0.04, 0.06, 1.94, 0.08, 2.95, 0.04, 0.04, 0.94, 0.95],
+      },
+      { id: 31, name: "콜라500ml", value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { id: 32, name: "칠성사이다125L", value: [0, 0, 0, 0, 0, 0, 0, 0, 1.01, 0] },
+      { id: 33, name: "환타파인애플355ml", value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { id: 34, name: "공기밥", value: [0, 0, 0, 0, 0.02, 0, 0, 0, 0, 0] },
+    ],
+  };
 
-    result.map(v => (v.value = v.value.split(",").map(x => +x)));
-    result.map(v => v.value.map(x => parseInt(x)));
+  getPredict = async data => {
+    let result;
+    // await axios({
+    //   method: "post",
+    //   url:
+    //     "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/predict",
+    //   data: Data,
+    // })
+    //   .then(function(response) {
+    //     result = response.data;
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
+    result = this.Data.predict;
+
+    for (var i in result) {
+      result[i].id -= 1;
+    }
+    console.log(result);
+    // result.map(v => (v.value = v.value.split(",").map(x => +x)));
+    // result.map(v => v.value.map(x => parseInt(x)));
     this.setState({ productPredict: result });
     this.setOption();
   };
-  getPredictDate = async Data => {
-    let result;
-    await axios({
-      method: "post",
-      url:
-        "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/predictdate",
-      data: Data,
-    })
-      .then(function(response) {
-        result = response.data;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  getPredictDate = async data => {
+    // let result;
+    // await axios({
+    //   method: "post",
+    //   url:
+    //     "https://ehhq6xajk3.execute-api.ap-northeast-2.amazonaws.com/dev/predictdate",
+    //   data: Data,
+    // })
+    //   .then(function(response) {
+    //     result = response.data;
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
 
-    this.setState({ datePredict: result });
-    this.options.xAxis.categories = result;
+    this.setState({ datePredict: this.Data.predictDate });
+    this.options.xAxis.categories = this.Data.predictDate;
   };
 
   componentDidMount = async () => {
