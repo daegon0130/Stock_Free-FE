@@ -44,7 +44,7 @@ class Login extends React.Component {
     //   });
     if (this.state.id === "stockfree" && this.state.password === "1234") {
       history.push({
-        pathname: "/stock",
+        pathname: "/",
         state: { login: true },
       });
     } else {
