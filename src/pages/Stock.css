@@ -53,7 +53,7 @@
   max-height: 500px;
   overflow-y: hidden;
 }
-.real-chart{
+.real-chart {
   margin-bottom: 15px;
 }
 .stock-chart .chart-name {
@@ -93,34 +93,6 @@ hr {
   font-weight: 500;
   width: 100%;
   position: relative;
-}
-.productShow button {
-  height: 16px;
-  width: 32px;
-  font-size: 10px;
-  font-weight: 500;
-  text-align: left;
-  color: #fbfbfb;
-  border-radius: 2px;
-  background-color: #c4183c;
-  border-style: none;
-  position: absolute;
-  margin-right: 24px;
-  right: 0;
-}
-.productNotShow button {
-  height: 16px;
-  width: 32px;
-  font-size: 10px;
-  font-weight: 500;
-  text-align: left;
-  color: #fbfbfb;
-  border-radius: 2px;
-  background-color: #17c671;
-  border-style: none;
-  position: absolute;
-  margin-right: 24px;
-  right: 0;
 }
 
 .loader_text {

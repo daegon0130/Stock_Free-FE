@@ -3,7 +3,8 @@ import React from "react";
 import "./Home.css";
 import Navi from "../components/Navi";
 import Header from "../components/Header";
-import Chart from "../components/Chart";
+import Chart from "components/Chart";
+import { SmallButton } from "../ui/SmallButton";
 import coreimg from "../images/핵심 제품.svg";
 
 class Home extends React.Component {
@@ -849,9 +850,10 @@ class Home extends React.Component {
                           <div>
                             {v.name}
                           </div>
-                          <button onClick={() => this.handleRemoveChange(v.id)}>
-                            제거
-                          </button>
+                          <SmallButton
+                            onClick={() => this.handleRemoveChange(v.id)}
+                            label = "제거" css = {{ backgroundColor : '#c4183c' }}
+                          />
                         </div>
                       );
                     })}
@@ -867,11 +869,10 @@ class Home extends React.Component {
                           <div>
                             {product.name}
                           </div>
-                          <button
+                          <SmallButton
                             onClick={() => this.handleAddChange(product.id)}
-                          >
-                            추가
-                          </button>
+                            label = "추가"
+                          />
                         </div>
                       );
                     })}

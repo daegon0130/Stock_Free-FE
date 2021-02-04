@@ -1,6 +1,6 @@
 {
   "name": "stock_free",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -41,5 +41,10 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://daegon0130.github.io/Stock_Free-FE"
+  "homepage": "https://daegon0130.github.io/Stock_Free-FE",
+  "description": "stock_free project",
+  "main": "index.js",
+  "repository": "https://github.com/daegon0130/Stock_Free-FE.git",
+  "author": "daegon0130 <ldg9701@gmail.com>",
+  "license": "MIT"
 }
