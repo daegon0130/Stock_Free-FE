@@ -1,10 +1,10 @@
 import React from "react";
 //import axios from "axios";
 import "./Sales.css";
-import Navi from "../components/Navi";
-import Header from "components/Header";
+import { Navi } from "../components/Navigation/Navi";
+import { Header } from "../components/Header";
 import StockTable from "../components/StockTable";
-import Chart from "components/Chart";
+import Chart from "../components/Chart/Chart";
 
 class Sales extends React.Component {
   state = {

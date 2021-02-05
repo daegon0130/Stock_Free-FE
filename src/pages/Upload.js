@@ -1,8 +1,8 @@
 import React from "react";
 import "./Upload.css";
-import Navi from "../components/Navi";
-import Header from "../components/Header";
-import Mail from "../components/Mail";
+import { Navi } from "../components/Navigation/Navi";
+import { Header } from "../components/Header";
+import { Mail } from "../components/Mail";
 
 class Upload extends React.Component {
   state = {

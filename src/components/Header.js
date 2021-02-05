@@ -1,12 +1,33 @@
 import React from 'react';
-import './Header.css';
+import styled from 'styled-components';
 
-function Header({ startDate, lastDate }){
+export const Header = ({ startDate, lastDate }) => {
     return(
-    <div className="Header"><span className="Date">{startDate}</span><span className="other">부터 &nbsp;</span>
-        <span className="Date">{lastDate}</span><span className="other">까지 데이터로 분석합니다.</span>
-    </div>
+    <HeaderBar>
+        {startDate}
+        <Words>부터 &nbsp;</Words>
+        {lastDate}
+        <Words>까지 데이터로 분석합니다.</Words>
+    </HeaderBar>
     );
 }
 
-export default Header;
+const HeaderBar = styled.div`
+    min-width: 825px;
+    height: 60px;
+    background-color: #fff;
+    color: #818ea3;
+    padding-left: 24px;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 60px;
+    vertical-align: middle;
+`;
+
+const Words = styled.span`
+    margin-left: 5px;
+    font-size: 17px;
+    line-height: 60px;
+    vertical-align: middle;
+    display: inline-block;
+`

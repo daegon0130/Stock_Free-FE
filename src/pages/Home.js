@@ -1,9 +1,9 @@
 import React from "react";
 //import axios from "axios";
 import "./Home.css";
-import Navi from "../components/Navi";
-import Header from "../components/Header";
-import Chart from "components/Chart";
+import { Navi } from "../components/Navigation/Navi";
+import { Header } from "../components/Header";
+import Chart from "../components/Chart/Chart";
 import { SmallButton } from "../ui/SmallButton";
 import coreimg from "../images/핵심 제품.svg";
 

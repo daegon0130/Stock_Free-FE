@@ -1,10 +1,10 @@
 import React from "react";
 //import axios from "axios";
 import "./Stock.css";
-import Navi from "../components/Navi";
-import Header from "../components/Header";
+import { Navi } from "../components/Navigation/Navi";
+import { Header } from "../components/Header";
 import StockTableList from "../components/StockTableList";
-import Chart from "components/Chart";
+import Chart from "../components/Chart/Chart";
 import { SmallButton } from "../ui/SmallButton";
 
 class Stock extends React.Component {

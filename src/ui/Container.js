@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const Container = ({ css, children }) => {
     return(
-        <Box onClick={onClick} css={css}>
+        <Box css={css}>
             {children}            
         </Box>
     )

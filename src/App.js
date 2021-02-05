@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { theme } from './config';
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Upload from "./pages/Upload";
@@ -42,14 +43,16 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <>
-    <GlobalStyle/>
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <Route path="/login" exact={true} component={Login} />
-      <Route path="/" exact={true} component={Home} />
-      <Route path="/sales" exat={true} component={Sales} />
-      <Route path="/stock" exact={true} component={Stock} />
-      <Route path="/upload" exact={true} component={Upload} />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle/>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <Route path="/login" exact={true} component={Login} />
+        <Route path="/" exact={true} component={Home} />
+        <Route path="/sales" exat={true} component={Sales} />
+        <Route path="/stock" exact={true} component={Stock} />
+        <Route path="/upload" exact={true} component={Upload} />
+      </BrowserRouter>
+    </ThemeProvider>
     </>
   );
 }
