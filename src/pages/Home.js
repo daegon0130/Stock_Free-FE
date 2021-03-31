@@ -3,6 +3,8 @@ import React from "react";
 import "./Home.css";
 import { Navi } from "../components/Navigation/Navi";
 import { Header } from "../components/Header";
+import { HistoryData } from "../data/database";
+import { PredictData } from "../data/predict";
 import Chart from "../components/Chart/Chart";
 import { SmallButton } from "../ui/SmallButton";
 import coreimg from "../images/핵심 제품.svg";
@@ -75,6 +77,7 @@ class Home extends React.Component {
     //     console.log(error);
     //   });
     result = this.database.totalDate;
+    console.log(result);
     this.setState({
       date: [
         result[0].substring(2, 4) +

@@ -1,11 +1,33 @@
 # Stock Free
 
-## Yonsei AI startup Course 2020
+---
 
-_Click **[here](https://daegon0130.github.io/Stock_Free-FE)** to see the result_  
+## 프로젝트 설명
+
+> _Yonsei AI startup Course 2020_
+
+**신선식품 매장 재고 관리 솔루션 제품**  
+**[presentation slides](https://github.com/daegon0130/Stock_Free-FE/blob/master/presentation.pdf)**
+
+---
+
+## 솔루션 개발 프로세스
+
+문제 정의 -> 솔루션 제안 및 소개 -> 프로토타입 소개 -> 솔루션 필요성 (+그동안의 개발 진행 과정/review)
+
+🔽presentation slides  
+https://github.com/daegon0130/Stock_Free-FE/blob/master/presentation.pdf
+
+---
+
+## Web
+
+_Click **[here](https://daegon0130.github.io/Stock_Free-FE)** to see the prototype_  
 (id:stockfree, pw:1234 )
 
-## 폴더 스트럭쳐 : Atomic Design 참고
+---
+
+## 폴더 스트럭쳐 : Atomic Design 참고 (리팩토링 중)
 
 - routers: SPA를 라우팅하는 페이지, `react-router-dom` 을 사용합니다.
 - pages : 페이지 하나를 담당합니다. 기본적인 Helmet 정보, 초기에 서버에 요청할 서버 데이터, Container를 1:1로 대응합니다.

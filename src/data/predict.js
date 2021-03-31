@@ -165,6 +165,6 @@ const Data = {
     ],
 };
 
-export const predictData = ({ props }) =>{
+export const PredictData = ({ props }) =>{
     return Data[props];
 }
