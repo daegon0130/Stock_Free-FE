@@ -16,7 +16,7 @@
 ### &#9989; 중간 발표 (프로젝트 기획 + 진행 계획)
 
 🔽presentation slides  
-https://github.com/daegon0130/Stock_Free-FE/blob/master/presentation.pdf  
+https://github.com/daegon0130/Stock_Free-FE/blob/master/Development_process.pdf  
 <br/>
 
 ### &#9989; 최종 발표
