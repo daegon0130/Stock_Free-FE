@@ -22,6 +22,8 @@ export const Mail =()=> {
 
 const Page = styled.div`
   padding-left: 24px;
+  margin: 0 auto;
+  width: 80vw;
 
   & h1{
     font-weight: bold;

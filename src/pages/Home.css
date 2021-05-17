@@ -3,8 +3,15 @@
   padding-left: 240px;
 }
 
+.header {
+  background-color: #fff;
+}
 .sales-history {
   padding-left: 24px;
+  margin: 0 auto;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
 }
 .sales-history h1 {
   font-weight: bold;

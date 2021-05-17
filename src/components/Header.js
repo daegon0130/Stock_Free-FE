@@ -18,10 +18,12 @@ const HeaderBar = styled.div`
     background-color: #fff;
     color: #818ea3;
     padding-left: 24px;
-    font-weight: 600;
+    font-weight: 800;
     font-size: 21px;
     line-height: 60px;
     vertical-align: middle;
+    margin: 0 auto;
+    width: 80vw;
 `;
 
 const Words = styled.span`

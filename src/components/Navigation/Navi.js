@@ -71,7 +71,8 @@ const NavLinks = styled(NavLink)`
 `
 
 const Nav = styled.nav`
-  width: 240px;
+  width: 16.5vw;
+  min-width: 240px;
   height: 100vh;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: #ffffff;

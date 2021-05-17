@@ -26,6 +26,23 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 600;
     src: url('./ui/fonts/NanumGothicExtraBold.ttf');
   }
+  @font-face {
+    font-family:'malgun';
+    font-style: normal;
+    src: url('./ui/fonts/malgun.ttf');
+  }
+  @font-face {
+    font-family:'malgunbd';
+    font-style: bold;
+    font-weight: 400;
+    src: url('./ui/fonts/malgunbd.ttf');
+  }
+  @font-face {
+    font-family:'malgunsl';
+    font-style: extra-bold;
+    font-weight: 600;
+    src: url('./ui/fonts/malgunsl.ttf');
+  }
   *{
       box-sizing: border-box;
   }
@@ -34,7 +51,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     background-color: #f1f1f4;
-    font-family:  NanumGothic, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", Dotum, 돋움,
+    font-family:  malgun, NanumGothic, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", Dotum, 돋움,
       sans-serif;
     white-space: nowrap;
   }

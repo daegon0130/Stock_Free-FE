@@ -446,7 +446,7 @@ class Home extends React.Component {
     chart: {
       type: "areaspline",
       width: 292,
-      height: 84,
+      height: 90,
       margin: 0,
       animation: false,
     },

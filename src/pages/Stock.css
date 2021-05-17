@@ -1,5 +1,7 @@
 .stock-ready {
   padding-left: 24px;
+  margin: 0 auto;
+  width: 80vw;
 }
 .stock-ready h1 {
   font-weight: bold;
